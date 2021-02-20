@@ -5,9 +5,11 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Hello from "./Hello";
+import HelloWorld from './HelloClass'
 
 ReactDOM.render(
-  <h1>Hello World!!!</h1>,
+  <App/>,
   document.getElementById('root')
 );
 
