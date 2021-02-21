@@ -34,13 +34,24 @@ class CourseManager extends React.Component {
             owner: "New Owner",
             lastModified: "Never"
         }
-        this.state.courses.push(newCourse);
-        this.setState(this.state);
+        // this.state.courses.push(newCourse);
+        // this.setState(this.state);
+
+        courseService.createCourse(newCourse)
+            .then(course => {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    courses: [
+                        ...prevState.courses,
+                        course
+                    ]
+                }))
+            })
     }
 
     deleteCourse = (courseToDelete) => {
         // console.log(course);
-        deleteCourse(courseToDelete._id)
+        courseService.deleteCourse(courseToDelete._id)
             .then(status => {
                 // const newCourses = this.state.courses
                 //     .filter(course => course !== courseToDelete)
