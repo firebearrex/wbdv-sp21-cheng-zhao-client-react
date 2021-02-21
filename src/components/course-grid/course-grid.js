@@ -9,11 +9,13 @@ const CourseGrid = ({courses}) =>
         <h2>Course Grid {courses.length}</h2>
         <div className="row">
             {
-                courses.map(course =>
-                    <CourseCard course={course}/>
+                courses.map((course, idx) =>
+                    <CourseCard
+                        key={idx}
+                        course={course}/>
                 )
             }
         </div>
-    </div>
+    </div>;
 
 export default CourseGrid
