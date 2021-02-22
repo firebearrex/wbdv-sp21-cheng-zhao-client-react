@@ -31,8 +31,8 @@ class CourseManager extends React.Component {
     addCourse = () => {
         const newCourse = {
             title: "New Course",
-            owner: "New Owner",
-            lastModified: "Never"
+            owner: "Me",
+            lastModified: "01/01/2021"
         }
         // this.state.courses.push(newCourse);
         // this.setState(this.state);
@@ -104,12 +104,24 @@ class CourseManager extends React.Component {
                 {/*<button onClick={this.addCourse}>Add Course</button>*/}
 
                 <nav className={"navbar navbar-expand-md navbar-dark bg-primary fixed-top"}>
-                    <div className={"container-fluid"}>
-                        <span>
+                    <div className={"container-fluid row"}>
+                        <span className={"col-3"}>
                             <a className="navbar-brand fas fa-bars" href="#"></a>
-                            <h4 className={"navbar-text"}>Course Manager</h4>
+                            <span className={"navbar-text h4 m-auto"}>Course Manager</span>
                         </span>
-
+                        <span className="input-group col-8">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Enter new course title here: </span>
+                            </div>
+                            <input id={"new-title"}
+                                   type="text"
+                                   className="form-control w-auto"
+                                   placeholder="New Course Title"
+                                   aria-label="Type your new course title here"/>
+                        </span>
+                        <button onClick={this.addCourse} className="btn col-1 fas fa-2x fa-plus-circle"></button>
+                        {/*<span className={"col-1"}>*/}
+                        {/*</span>*/}
                     </div>
                 </nav>
 
@@ -129,8 +141,8 @@ class CourseManager extends React.Component {
                        render={(props) => <CourseEditor {...props}/>}>
                 </Route>
             </div>
-        )
+    )
     }
-}
+    }
 
-export default CourseManager
+    export default CourseManager
