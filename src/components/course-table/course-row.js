@@ -24,10 +24,11 @@ const CourseRow = (
 
     return (
         <tr>
-            <td>
+            <td className={"d-table-cell"}>
                 {
                     !editing &&
                     <Link to={"/courses/editor"}>
+                        <i className="fas fa-file"></i>
                         {title}
                     </Link>
                 }
@@ -38,9 +39,9 @@ const CourseRow = (
                            onChange={(event) => setNewTitle(event.target.value)}/>
                 }
             </td>
-            <td>{owner}</td>
-            <td>{lastModified}</td>
-            <td>
+            <td className={"d-none d-md-table-cell"}>{owner}</td>
+            <td className={"d-none d-lg-table-cell"}>{lastModified}</td>
+            <td className={"d-table-cell"}>
                 {editing && <i onClick={() => saveTitle()} className="fas fa-check"></i>}
                 {editing && <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>}
                 {!editing && <i onClick={() => setEditing(true)} className="fas fa-edit"></i>}

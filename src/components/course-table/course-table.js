@@ -16,9 +16,17 @@ export default class CourseTable
                 <Link to={"/courses/grid"}>
                     <i className={"fas fa-2x fa-th float-right"}></i>
                 </Link>
-                <h2>Course Table</h2>
+                <h2>Courses - Table</h2>
                 {/*<button>Add Course</button>*/}
-                <table className="table">
+                <table className="table table-striped">
+                    <thead>
+                    <tr>
+                        <th className="d-table-cell">Title</th>
+                        <th className="d-none d-md-table-cell">Owned By</th>
+                        <th className="d-none d-lg-table-cell">Last Modified</th>
+                        <th className={"d-table-cell"}></th>
+                    </tr>
+                    </thead>
                     <tbody>
                     {
                         this.props.courses.map((course, idx) =>

@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 const CourseCard = ({course}) =>
-    <div className="col-4">
+    <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
         <div className="card">
             <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png" className="card-img-top" alt="..."/>
             <div className="card-body">
@@ -13,7 +13,7 @@ const CourseCard = ({course}) =>
                 <Link to="/courses/editor" className="btn btn-primary">
                     {course.title}
                 </Link>
-                <i className="fas fa-trash"></i>
+                <i className="fas fa-trash float-right"></i>
             </div>
         </div>
     </div>
