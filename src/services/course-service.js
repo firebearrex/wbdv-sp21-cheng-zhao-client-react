@@ -12,16 +12,24 @@ export const createCourse = (course) =>
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
+        .then(response => response.json());
 
 
 export const deleteCourse = (courseId) =>
     fetch(`${COURSES_URL}/${courseId}`, {
         method: 'DELETE'
     })
-        .then(response => response.json())
+        .then(response => response.json());
 
-export const updateCourse = (courseId, course) => {}
+export const updateCourse = (courseId, updatedCourse) =>
+    fetch(`${COURSES_URL}/${courseId}`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedCourse),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json());
 
 // const api = {
 //     findAllCourses,

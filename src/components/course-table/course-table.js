@@ -26,6 +26,7 @@ export default class CourseTable
                                 key={idx}
                                 course={course}
                                 deleteCourse={this.props.deleteCourse}
+                                updateCourse={this.props.updateCourse}
                                 title={course.title}
                                 owner={course.owner}
                                 lastModified={course.lastModified}
