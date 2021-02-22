@@ -100,8 +100,19 @@ class CourseManager extends React.Component {
     render() {
         return (
             <div>
-                <h1>Course Manager</h1>
-                <button onClick={this.addCourse}>Add Course</button>
+                {/*<h1>Course Manager</h1>*/}
+                {/*<button onClick={this.addCourse}>Add Course</button>*/}
+
+                <nav className={"navbar navbar-expand-md navbar-dark bg-primary fixed-top"}>
+                    <div className={"container-fluid"}>
+                        <span>
+                            <a className="navbar-brand fas fa-bars" href="#"></a>
+                            <h4 className={"navbar-text"}>Course Manager</h4>
+                        </span>
+
+                    </div>
+                </nav>
+
                 <Route path={"/courses/table"}>
                     <CourseTable
                         updateCourse={this.updateCourse}

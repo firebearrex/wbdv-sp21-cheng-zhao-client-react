@@ -1,21 +1,36 @@
 import React from "react";
 import CourseRow from "./course-row";
 import {Link} from "react-router-dom";
+import "../course-manager.css"
 
 export default class CourseTable extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
+        // console.log(props)
     }
 
     render() {
         return (
-            <div>
-                <Link to={"/courses/grid"}>
-                    <i className={"fas fa-2x fa-th float-right"}></i>
-                </Link>
-                <h2>Courses - Table</h2>
+            <div className={"container extra-top-padding"}>
+                {/*<Link to={"/"}>*/}
+                {/*    <i className={"fas fa-2x fa-home"}></i>*/}
+                {/*</Link>*/}
+                {/*<Link to={"/courses/grid"}>*/}
+                {/*    <i className={"fas fa-2x fa-th float-right"}></i>*/}
+                {/*</Link>*/}
+                <h2>
+                    Courses - Table
+                    <span className={"row float-right"}>
+                        <Link to={"/"}>
+                            <i className={"col-1 fas fa-home"}></i>
+                        </Link>
+                        <Link to={"/courses/grid"}>
+                            <i className={"col-1 fas fa-th"}></i>
+                        </Link>
+                        <span className={"col-10"}></span>
+                    </span>
+                </h2>
                 {/*<button>Add Course</button>*/}
                 <table className="table table-striped">
                     <thead>
