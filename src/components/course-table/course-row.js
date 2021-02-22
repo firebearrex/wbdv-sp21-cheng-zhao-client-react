@@ -41,16 +41,18 @@ const CourseRow = (
             </td>
             <td className={"d-none d-md-table-cell"}>{owner}</td>
             <td className={"d-none d-lg-table-cell"}>{lastModified}</td>
-            <td className={"d-table-cell"}>
-                <div className={"row"}>
-                    {editing && <i onClick={() => saveTitle()} className="col-2 fas fa-check"></i>}
-                    {editing && <i onClick={() => deleteCourse(course)} className="col-2 fas fa-trash"></i>}
-                    {!editing && <i onClick={() => setEditing(true)} className="col fas fa-edit"></i>}
-                </div>
+            <td className={"row d-table-cell"}>
+                {editing && <i onClick={() => saveTitle()} className="col-2 fas fa-check"></i>}
+                {editing && <i
+                    onClick={() => {
+                        deleteCourse(course);
+                        setEditing(false);
+                    }}
+                    className="col-2 fas fa-trash"></i>}
+                {!editing && <i onClick={() => setEditing(true)} className="col fas fa-edit"></i>}
             </td>
         </tr>
-
-    );
+    )
 }
 
 export default CourseRow
