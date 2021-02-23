@@ -1,3 +1,11 @@
 .extra-top-padding {
     padding-top: 85px;
 }
+
+.extra-top-padding-editor {
+    padding-top: 145px;
+}
+
+.extra-top-margin-editor-navbar {
+    margin-top: 62px;
+}
