@@ -34,15 +34,22 @@ const CourseCard = ({deleteCourse, updateCourse, course, title, owner}) => {
                                    onChange={(event) => setNewTitle(event.target.value)}/>
                         }
                         <span className={"row col-2 float-right"}>
-                        {editing && <i onClick={() => saveTitle()} className="col-2 fas fa-check"></i>}
-                            {editing && <i
+                            {editing &&
+                            <i
+                                onClick={() => saveTitle()}
+                                className="col-2 fas fa-check"></i>}
+                            {editing &&
+                            <i
                                 onClick={() => {
                                     deleteCourse(course);
                                     setEditing(false);
                                 }}
                                 className="col-2 fas fa-trash"></i>}
-                            {!editing && <i onClick={() => setEditing(true)} className="col fas fa-edit"></i>}
-                    </span>
+                            {!editing &&
+                            <i
+                                onClick={() => setEditing(true)}
+                                className="col fas fa-edit d-none d-lg-inline"></i>}
+                        </span>
                     </h5>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of
                         the
