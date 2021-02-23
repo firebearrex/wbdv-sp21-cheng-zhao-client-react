@@ -3,7 +3,7 @@ import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import CourseEditor from "./course-editor/course-editor";
 import {Link, Route} from "react-router-dom";
-import courseService, {deleteCourse, findAllCourses} from "../services/course-service";
+import courseService, {findAllCourses} from "../services/course-service";
 
 
 class CourseManager extends React.Component {
@@ -15,7 +15,7 @@ class CourseManager extends React.Component {
             // {title: "CS0003", owner: "Cookie", lastModified: "03/01/2021"},
             // {title: "CS0004", owner: "Duck", lastModified: "04/01/2021"}
         ],
-        qwe: 123,
+        newCourseTitle: '',
         sdf: 456
     }
 
@@ -29,11 +29,18 @@ class CourseManager extends React.Component {
 
 
     addCourse = () => {
+        let newTitle;
+        if (this.state.newCourseTitle === '') {
+            newTitle = "New Course";
+        } else {
+            newTitle = this.state.newCourseTitle;
+        }
+
         const newCourse = {
-            title: "New Course",
+            title: newTitle,
             owner: "Me",
             lastModified: "01/01/2021"
-        }
+        };
         // this.state.courses.push(newCourse);
         // this.setState(this.state);
 
@@ -42,11 +49,15 @@ class CourseManager extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     courses: [
-                        ...prevState.courses,
-                        course
+                        course,
+                        ...prevState.courses
                     ]
                 }))
             })
+
+        this.setState({
+            newCourseTitle: ''
+        })
     }
 
     deleteCourse = (courseToDelete) => {
@@ -97,6 +108,11 @@ class CourseManager extends React.Component {
             })
     }
 
+    updateNewCourseTitle = event =>
+        this.setState({
+            newCourseTitle: event.target.value
+        });
+
     render() {
         return (
             <div>
@@ -113,11 +129,12 @@ class CourseManager extends React.Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Enter new course title here: </span>
                             </div>
-                            <input id={"new-title"}
-                                   type="text"
-                                   className="form-control w-auto"
+                            <input type="text"
+                                   className="form-control w-auto wbdv-new-title"
                                    placeholder="New Course Title"
-                                   aria-label="Type your new course title here"/>
+                                   aria-label="Type your new course title here"
+                                   value={this.state.newCourseTitle}
+                                   onChange={event => this.updateNewCourseTitle(event)}/>
                         </span>
                         <button onClick={this.addCourse} className="btn col-1 fas fa-2x fa-plus-circle"></button>
                         {/*<span className={"col-1"}>*/}
@@ -141,8 +158,8 @@ class CourseManager extends React.Component {
                        render={(props) => <CourseEditor {...props}/>}>
                 </Route>
             </div>
-    )
+        )
     }
-    }
+}
 
-    export default CourseManager
+export default CourseManager
