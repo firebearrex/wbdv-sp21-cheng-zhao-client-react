@@ -4,13 +4,16 @@ import "../course-manager.css"
 
 const CourseEditor = ({history}) =>
     <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-transparent fixed-top extra-top-margin-editor-navbar">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div className="container-fluid row">
                 <span className={"col-1 col-lg-3"}>
-                    <a
-                        onClick={() => history.goBack()}
-                        className="navbar-brand fas fa-times"></a>
-                    <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>Course Editor</span>
+                    <Link>
+                        <a onClick={() => history.goBack()}
+                          className="navbar-brand fas fa-times"></a>
+                    </Link>
+                    <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>
+                        Course Editor
+                    </span>
                 </span>
                 <span className={"col-11 col-lg-9"}>
                     <ul className="nav nav-pills nav-fill">

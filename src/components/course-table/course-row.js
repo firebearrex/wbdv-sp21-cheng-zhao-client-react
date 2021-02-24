@@ -27,7 +27,7 @@ const CourseRow = (
             <td className={"d-table-cell"}>
                 {
                     !editing &&
-                    <Link to={"/courses/editor"}>
+                    <Link to={"/editor"}>
                         <i className="fas fa-file"></i>
                         {title}
                     </Link>

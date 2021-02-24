@@ -154,9 +154,6 @@ class CourseManager extends React.Component {
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
-                <Route path={"/courses/editor"}
-                       render={(props) => <CourseEditor {...props}/>}>
-                </Route>
             </div>
         )
     }

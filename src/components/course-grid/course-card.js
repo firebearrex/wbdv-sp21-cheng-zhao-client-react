@@ -34,19 +34,16 @@ const CourseCard = ({deleteCourse, updateCourse, course, title, owner}) => {
                                    onChange={(event) => setNewTitle(event.target.value)}/>
                         }
                         <span className={"row col-2 float-right"}>
-                            {editing &&
-                            <i
+                            {editing && <i
                                 onClick={() => saveTitle()}
                                 className="col-2 fas fa-check"></i>}
-                            {editing &&
-                            <i
+                            {editing && <i
                                 onClick={() => {
                                     deleteCourse(course);
                                     setEditing(false);
                                 }}
                                 className="col-2 fas fa-trash"></i>}
-                            {!editing &&
-                            <i
+                            {!editing && <i
                                 onClick={() => setEditing(true)}
                                 className="col fas fa-edit d-none d-lg-inline"></i>}
                         </span>
@@ -56,7 +53,7 @@ const CourseCard = ({deleteCourse, updateCourse, course, title, owner}) => {
                         card's
                         content.</p>
                     {/*<img src={``}/>*/}
-                    <Link to="/courses/editor" className="btn btn-primary">
+                    <Link to="/editor" className="btn btn-primary">
                         {course.title}
                     </Link>
                 </div>
