@@ -4,6 +4,7 @@ import CourseGrid from "./course-grid/course-grid";
 import CourseEditor from "./course-editor/course-editor";
 import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses} from "../services/course-service";
+import "./course-manager.css"
 
 
 class CourseManager extends React.Component {
@@ -142,18 +143,26 @@ class CourseManager extends React.Component {
                     </div>
                 </nav>
 
-                <Route path={"/courses/table"}>
+                <Route path={["/courses", "/courses/table"]}
+                       exact={true}>
                     <CourseTable
+                        addCourse={this.addCourse}
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
-                <Route path={"/courses/grid"}>
+                <Route path={"/courses/grid"}
+                       exact={true}>
                     <CourseGrid
+                        addCourse={this.addCourse}
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
+
+                <button onClick={this.addCourse} className="btn fas fa-3x fa-plus-circle bottom-right"></button>
+                {/*<span>*/}
+                {/*</span>*/}
             </div>
         )
     }

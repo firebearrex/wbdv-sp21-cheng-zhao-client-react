@@ -7,10 +7,8 @@ const CourseEditor = ({history}) =>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
             <div className="container-fluid row">
                 <span className={"col-1 col-lg-3"}>
-                    <Link>
-                        <a onClick={() => history.goBack()}
-                          className="navbar-brand fas fa-times"></a>
-                    </Link>
+                    <a onClick={() => history.goBack()}
+                       className="navbar-brand fas fa-times"></a>
                     <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>
                         Course Editor
                     </span>

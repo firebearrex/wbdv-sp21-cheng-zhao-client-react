@@ -3,7 +3,7 @@ import CourseCard from "./course-card";
 import {Link} from "react-router-dom";
 import "../course-manager.css"
 
-const CourseGrid = ({deleteCourse, updateCourse, courses}) =>
+const CourseGrid = ({addCourse, deleteCourse, updateCourse, courses}) =>
     <div className={"container extra-top-padding"}>
         {/*<Link to="/courses/table">*/}
         {/*    <i className="fas fa-list fa-2x float-right"></i>*/}

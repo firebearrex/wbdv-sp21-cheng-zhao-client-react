@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 
-export default () =>
+const Home = () =>
     <div className={"container"}>
         <h1>Home</h1>
         <div className="list-group">
@@ -16,3 +16,5 @@ export default () =>
             </Link>
         </div>
     </div>
+
+export default Home;

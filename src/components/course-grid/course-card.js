@@ -2,18 +2,33 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 // import {useState} from "react/cjs/react.production.min";
 
-const CourseCard = ({deleteCourse, updateCourse, course, title, owner}) => {
+const CourseCard = (
+    {
+        deleteCourse,
+        updateCourse,
+        course,
+        title,
+        owner
+    }) => {
     const [editing, setEditing] = useState(false);
     const [newTitle, setNewTitle] = useState(title);
+    const [currCourse, setCurrCourse] = useState(course);
 
     const saveTitle = () => {
         setEditing(false);
         const updatedCourse = {
-            ...course,
+            ...currCourse,
             title: newTitle
         };
         updateCourse(updatedCourse);
+        setCurrCourse(updatedCourse);
+        setNewTitle('');
     }
+
+    const editTitle = () => {
+        setNewTitle(currCourse.title);
+        setEditing(true);
+    };
 
     return (
         <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
@@ -44,7 +59,7 @@ const CourseCard = ({deleteCourse, updateCourse, course, title, owner}) => {
                                 }}
                                 className="col-2 fas fa-trash"></i>}
                             {!editing && <i
-                                onClick={() => setEditing(true)}
+                                onClick={() => editTitle()}
                                 className="col fas fa-edit d-none d-lg-inline"></i>}
                         </span>
                     </h5>

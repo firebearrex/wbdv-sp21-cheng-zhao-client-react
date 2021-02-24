@@ -9,3 +9,9 @@
 .extra-top-margin-editor-navbar {
     margin-top: 62px;
 }
+
+.bottom-right {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+}

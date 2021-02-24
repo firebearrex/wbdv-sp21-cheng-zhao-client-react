@@ -12,15 +12,24 @@ const CourseRow = (
     }) => {
     const [editing, setEditing] = useState(false);
     const [newTitle, setNewTitle] = useState(title);
+    const [currCourse, setCurrCourse] = useState(course);
+
 
     const saveTitle = () => {
         setEditing(false);
         const updatedCourse = {
-            ...course,
+            ...currCourse,
             title: newTitle
         };
         updateCourse(updatedCourse);
+        setCurrCourse(updatedCourse);
+        setNewTitle('');
     }
+
+    const editTitle = () => {
+        setNewTitle(currCourse.title);
+        setEditing(true);
+    };
 
     return (
         <tr>
@@ -49,7 +58,7 @@ const CourseRow = (
                         setEditing(false);
                     }}
                     className="col-2 fas fa-trash"></i>}
-                {!editing && <i onClick={() => setEditing(true)} className="col fas fa-edit"></i>}
+                {!editing && <i onClick={() => editTitle()} className="col fas fa-edit"></i>}
             </td>
         </tr>
     )

@@ -14,6 +14,7 @@ function App() {
                     <CourseManager/>
                 </Route>
                 <Route path={"/editor"}
+                       exact={true}
                        render={(props) =>
                            <CourseEditor {...props}/>}>
                 </Route>

@@ -32,6 +32,7 @@ export default class CourseTable extends React.Component {
                     </span>
                 </h2>
                 {/*<button>Add Course</button>*/}
+
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -41,6 +42,7 @@ export default class CourseTable extends React.Component {
                         <th className={"d-table-cell"}></th>
                     </tr>
                     </thead>
+
                     <tbody>
                     {
                         this.props.courses.map((course, idx) =>
