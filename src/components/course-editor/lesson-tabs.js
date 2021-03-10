@@ -18,7 +18,7 @@ const LessonTabs = (
         if (typeof moduleId !== "undefined" && moduleId !== "undefined") {
             findLessonsForModule(moduleId);
         }
-    }, [moduleId]);
+    }, [courseId,moduleId]);
     return (
         <>
             <ul className={"nav nav-pills nav-fill"}>
@@ -37,7 +37,7 @@ const LessonTabs = (
                 <a className={"nav-item nav-link"}
                    aria-current={"true"}>
                     <i onClick={() => createLesson(moduleId)}
-                    className={"fas fa-plus-circle"}></i>
+                    className={"fas fa-plus-circle fa-2x"}></i>
                 </a>
             </ul>
         </>

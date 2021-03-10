@@ -120,7 +120,7 @@ class CourseManager extends React.Component {
                 {/*<h1>Course Manager</h1>*/}
                 {/*<button onClick={this.addCourse}>Add Course</button>*/}
 
-                <Route path={["/courses", "/courses/table", "courses/grid"]}
+                <Route path={["/courses", "/courses/table", "/courses/grid"]}
                        exact={true}>
                     <nav className={"navbar navbar-expand-md navbar-dark bg-primary fixed-top"}>
                         <div className={"container-fluid row"}>

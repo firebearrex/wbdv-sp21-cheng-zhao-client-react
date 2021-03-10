@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import EditableItem from "../editable-item";
 import {useParams} from 'react-router-dom';
 import topicService from "../../services/topic-service";
-import lessonService from "../../services/lesson-service";
 
 const TopicPills = (
     {
@@ -19,14 +18,14 @@ const TopicPills = (
         if (typeof lessonId !== "undefined" && lessonId !== "undefined") {
             findTopicsForLesson(lessonId);
         }
-    }, [lessonId]);
+    }, [courseId,moduleId,lessonId]);
     return (
         <>
             <ul className={"nav nav-pills nav-fill"}>
                 {
                     myTopics.map(topic =>
                         <EditableItem
-                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${topic._id}`}
+                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                             type={"topic"}
                             updateItem={updateTopic}
                             deleteItem={deleteTopic}

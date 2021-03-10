@@ -1,5 +1,5 @@
-import React from "react";
-import {Link, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, Route, useParams} from "react-router-dom";
 import moduleReducer from "../../reducers/module-reducer";
 import lessonReducer from "../../reducers/lesson-reducer";
 import topicReducer from "../../reducers/topic-reducer";
@@ -21,6 +21,14 @@ const store = createStore(reducer);
 
 const CourseEditor = ({history}) => {
     const {layout, courseId, moduleId, topicId} = useParams();
+    const [courseTitle, setCourseTitle] = useState('');
+    useEffect(() => {
+        console.log(`Fetching course title for: ${courseId}`);
+        if (typeof courseId !== "undefined" && moduleId !== "undefined") {
+            courseService.findCourseById(courseId)
+                .then(currCourse => setCourseTitle(currCourse.title))
+        }
+    })
     return (
         <Provider store={store}>
             <div>
@@ -28,11 +36,11 @@ const CourseEditor = ({history}) => {
                     <div className="container-fluid row">
                         <span className={"col-2 col-md-3 mr-auto"}>
                             <Link to={"/"}
-                            className={"navbar-brand fas fa-home"}></Link>
+                                  className={"navbar-brand fas fa-home"}></Link>
                             <Link to={`/courses/${layout}`}
                                   className="navbar-brand fas fa-arrow-left"></Link>
                             <span className={"navbar-text h4 m-auto d-none d-md-inline text-white"}>
-                                Course Editor - {courseId}
+                                {courseTitle}
                             </span>
                         </span>
                         <form className={"navbar-nav col-10 col-md-9"}>
@@ -108,7 +116,13 @@ const CourseEditor = ({history}) => {
                     </div>
 
                     <div className="col-8">
-                        <LessonTabs/>
+                        <Route path={[
+                            "/courses/:layout/edit/:courseId/modules/:moduleId",
+                            "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                            "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
+                               exact={true}>
+                            <LessonTabs/>
+                        </Route>
 
                         {/*<ul className="nav nav-pills mt-3">*/}
                         {/*    <li className="nav-item">*/}
@@ -133,12 +147,17 @@ const CourseEditor = ({history}) => {
 
                         <br/>
 
-                        {/*<TopicPills/>*/}
+                        <Route path={[
+                            "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                            "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
+                               exact={true}>
+                            <TopicPills/>
+                        </Route>
                     </div>
                 </div>
             </div>
         </Provider>
-    )
+    );
 }
 
 export default CourseEditor;
