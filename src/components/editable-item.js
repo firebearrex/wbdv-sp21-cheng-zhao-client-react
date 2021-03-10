@@ -4,28 +4,31 @@ import {Link, useParams} from "react-router-dom";
 const EditableItem = (
     {
         to = "somewhere/to/go",
+        type,
         deleteItem,
         updateItem,
         item = {title: "Some Title", _id: "ABC"},
-        active
+        active,
+        key
     }) => {
     const [editing, setEditing] = useState(false);
     const [cachedItem, setCachedItem] = useState(item);
     const {moduleId, lessonId, topicId} = useParams();
     return (
-        <a className={`list-group-item ${active ? 'active' : ''} list-group-item-action`}
-           aria-current={"true"}>
+        <a className={`${type === 'module' ? "list-group-item list-group-item-action" : "nav-item nav-link"}  ${active /*|| editing*/ ? 'active' : ''}`}
+           aria-current={"true"}
+           key={key}>
             {
                 !editing &&
                 <>
                     <Link
-                        className={`nav-link ${active ? 'active' : ''}`}
+                        // className={`nav-link ${active ? 'active' : ''}`}
                         to={to}>
                         {item.title}
+                        <i
+                            className={"fas fa-edit float-right"}
+                            onClick={() => setEditing(true)}></i>
                     </Link>
-                    <i
-                        className={"fas fa-edit"}
-                        onClick={() => setEditing(true)}></i>
                 </>
             }
             {
@@ -34,7 +37,8 @@ const EditableItem = (
                     <input
                         onChange={(event =>
                             setCachedItem({
-                                ...cachedItem,
+                                // ...cachedItem,
+                                ...item,
                                 title: event.target.value
                             }))}
                         value={cachedItem.title}
@@ -48,8 +52,8 @@ const EditableItem = (
                     <i
                         className={"fas fa-trash"}
                         onClick={() => {
-                            deleteItem(item);
                             setEditing(false);
+                            deleteItem(item);
                         }}></i>
                 </>
             }

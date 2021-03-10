@@ -1,13 +1,14 @@
 import React from "react";
 import {Link, useParams} from "react-router-dom";
-import moduleReducer from "../reducers/module-reducer";
-import lessonReducer from "../reducers/lesson-reducer";
-import topicReducer from "../reducers/topic-reducer";
+import moduleReducer from "../../reducers/module-reducer";
+import lessonReducer from "../../reducers/lesson-reducer";
+import topicReducer from "../../reducers/topic-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
 import TopicPills from "./topic-pills";
+import courseService from "../../services/course-service";
 import "../course-manager.css";
 
 const reducer = combineReducers({
@@ -132,7 +133,7 @@ const CourseEditor = ({history}) => {
 
                         <br/>
 
-                        <TopicPills/>
+                        {/*<TopicPills/>*/}
                     </div>
                 </div>
             </div>

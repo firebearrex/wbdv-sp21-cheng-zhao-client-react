@@ -120,13 +120,15 @@ class CourseManager extends React.Component {
                 {/*<h1>Course Manager</h1>*/}
                 {/*<button onClick={this.addCourse}>Add Course</button>*/}
 
-                <nav className={"navbar navbar-expand-md navbar-dark bg-primary fixed-top"}>
-                    <div className={"container-fluid row"}>
+                <Route path={["/courses", "/courses/table", "courses/grid"]}
+                       exact={true}>
+                    <nav className={"navbar navbar-expand-md navbar-dark bg-primary fixed-top"}>
+                        <div className={"container-fluid row"}>
                         <span className={"col-1 col-lg-3"}>
                             <a className="navbar-brand fas fa-bars" href="#"></a>
                             <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>Course Manager</span>
                         </span>
-                        <span className={"input-group col-10 col-lg-8"}>
+                            <span className={"input-group col-10 col-lg-8"}>
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Enter new course title here: </span>
                             </div>
@@ -137,34 +139,45 @@ class CourseManager extends React.Component {
                                    value={this.state.newCourseTitle}
                                    onChange={event => this.updateNewCourseTitle(event)}/>
                         </span>
-                        <button onClick={this.addCourse} className="btn col-1 fas fa-2x fa-plus-circle"></button>
-                        {/*<span className={"col-1"}>*/}
-                        {/*</span>*/}
-                    </div>
-                </nav>
+                            <button onClick={this.addCourse} className="btn col-1 fas fa-2x fa-plus-circle"></button>
+                            {/*<span className={"col-1"}>*/}
+                            {/*</span>*/}
+                        </div>
+                    </nav>
 
-                <Route path={["/courses", "/courses/table"]}
-                       exact={true}>
-                    <CourseTable
-                        addCourse={this.addCourse}
-                        updateCourse={this.updateCourse}
-                        deleteCourse={this.deleteCourse}
-                        courses={this.state.courses}/>
-                </Route>
-                <Route path={"/courses/grid"}
-                       exact={true}>
-                    <CourseGrid
-                        addCourse={this.addCourse}
-                        updateCourse={this.updateCourse}
-                        deleteCourse={this.deleteCourse}
-                        courses={this.state.courses}/>
-                </Route>
+                    <Route path={["/courses", "/courses/table"]}
+                           exact={true}>
+                        <CourseTable
+                            addCourse={this.addCourse}
+                            updateCourse={this.updateCourse}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}/>
+                    </Route>
+                    <Route path={"/courses/grid"}
+                           exact={true}>
+                        <CourseGrid
+                            addCourse={this.addCourse}
+                            updateCourse={this.updateCourse}
+                            deleteCourse={this.deleteCourse}
+                            courses={this.state.courses}/>
+                    </Route>
 
-                <button onClick={this.addCourse} className="btn fas fa-3x fa-plus-circle bottom-right"></button>
-                {/*<span>*/}
-                {/*</span>*/}
+                    <button onClick={this.addCourse} className="btn fas fa-3x fa-plus-circle bottom-right"></button>
+                    {/*<span>*/}
+                    {/*</span>*/}
+                </Route>
+                <Route path={[
+                    "/courses/:layout/edit/:courseId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"
+                ]}
+                       exact={true}
+                       render={(props) =>
+                           <CourseEditor {...props}/>}>
+                </Route>
             </div>
-        )
+        );
     }
 }
 

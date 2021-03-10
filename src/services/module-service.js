@@ -37,7 +37,7 @@ export const findModule = (moduleId) =>
 
 const moduleService = {
     findModulesForCourse,
-    createModuleForCourse: createModule,
+    createModule,
     findModule,
     updateModule,
     deleteModule
