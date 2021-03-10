@@ -7,16 +7,19 @@ function App() {
     return (
         <BrowserRouter>
             <div>
-                <Route path="/" exact={true}>
+                <Route path="/"
+                       exact={true}>
                     <Home/>
                 </Route>
-                <Route path="/courses">
+                <Route path="/courses"
+                       exact={true}>
                     <CourseManager/>
                 </Route>
                 <Route path={[
                     "/courses/:layout/edit/:courseId",
-                    "/courses/:layout/edit/:courseId/:moduleId",
-                    "/courses/:layout/edit/:courseId/"
+                    "/courses/:layout/edit/:courseId/modules/:moduleId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"
                 ]}
                        exact={true}
                        render={(props) =>

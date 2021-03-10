@@ -40,7 +40,11 @@ const CourseCard = (
                     <h5 className="row card-title">
                         {
                             !editing &&
-                            <span className={"col-10"}>{title}</span>
+                            <span className={"col-10"}>
+                                <Link to={`/courses/grid/edit/${course._id}`}>
+                                    {title}
+                                </Link>
+                            </span>
                         }
                         {
                             editing &&

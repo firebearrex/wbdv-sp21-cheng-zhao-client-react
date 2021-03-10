@@ -3,7 +3,7 @@ import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import CourseEditor from "./course-editor/course-editor";
 import {Link, Route} from "react-router-dom";
-import courseService, {findAllCourses} from "../services/course-service";
+import courseService from "../services/course-service";
 import "./course-manager.css"
 
 
@@ -25,7 +25,7 @@ class CourseManager extends React.Component {
         //     .then(actualCourses => this.setState({
         //         courses: actualCourses
         //     }));
-        findAllCourses()
+        courseService.findAllCourses()
             .then(courses => this.setState({courses}))
 
 

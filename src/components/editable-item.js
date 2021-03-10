@@ -11,9 +11,9 @@ const EditableItem = (
     }) => {
     const [editing, setEditing] = useState(false);
     const [cachedItem, setCachedItem] = useState(item);
-    const {moduleId} = useParams();
+    const {moduleId, lessonId, topicId} = useParams();
     return (
-        <a className={`list-group-item ${module._id === moduleId ? 'active' : ''} list-group-item-action`}
+        <a className={`list-group-item ${active ? 'active' : ''} list-group-item-action`}
            aria-current={"true"}>
             {
                 !editing &&

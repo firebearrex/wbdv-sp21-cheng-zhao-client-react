@@ -11,9 +11,12 @@ const Home = () =>
             <Link to="/courses/grid" className="list-group-item">
                 Courses Grid
             </Link>
-            <Link to="/editor" className="list-group-item">
-                Course Editor
-            </Link>
+            <a href="#" className={"list-group-item"}>
+                Please select a course through Courses-Table or Courses-Grid to enter the CourseEditor.
+            </a>
+            {/*<Link to="/editor" className="list-group-item">*/}
+            {/*    Course Editor*/}
+            {/*</Link>*/}
         </div>
     </div>
 
