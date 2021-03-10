@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const EditableItem = (
     {
@@ -11,8 +11,10 @@ const EditableItem = (
     }) => {
     const [editing, setEditing] = useState(false);
     const [cachedItem, setCachedItem] = useState(item);
+    const {moduleId} = useParams();
     return (
-        <>
+        <a className={`list-group-item ${module._id === moduleId ? 'active' : ''} list-group-item-action`}
+           aria-current={"true"}>
             {
                 !editing &&
                 <>
@@ -51,7 +53,7 @@ const EditableItem = (
                         }}></i>
                 </>
             }
-        </>
+        </a>
     );
 }
 

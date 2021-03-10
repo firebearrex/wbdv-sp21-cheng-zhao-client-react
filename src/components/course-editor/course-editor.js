@@ -11,7 +11,8 @@ import "../course-manager.css";
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
-    lessonReducer: lessonReducer
+    lessonReducer: lessonReducer,
+    topicReducer: topicReducer
 })
 
 const store = createStore(reducer);

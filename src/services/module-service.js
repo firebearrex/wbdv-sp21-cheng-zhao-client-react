@@ -35,7 +35,7 @@ export const findModule = (moduleId) =>
     fetch(`${MODULES_URL}/${moduleId}`)
         .then(response => response.json());
 
-const api = {
+const moduleService = {
     findModulesForCourse,
     createModuleForCourse,
     findModule,
@@ -43,4 +43,4 @@ const api = {
     deleteModule
 };
 
-export default api;
+export default moduleService;

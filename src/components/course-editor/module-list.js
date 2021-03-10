@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
-// import moduleService from "../services/module-service"
+import moduleService from "../services/module-service"
 
 const ModuleList = (
     {
@@ -18,29 +18,13 @@ const ModuleList = (
     }, [])
     return (
         <div className="list-group list-group-flush mt-3 editor-module-list">
-            <a href="#" className="list-group-item list-group-item-action active" aria-current="true">
-                Cras justo odio
-                <i className="fas fa-minus-circle float-right"></i>
-            </a>
-            <a href="#" className="list-group-item list-group-item-action">
-                Dapibus ac facilisis in
-                <i className="fas fa-minus-circle float-right"></i>
-            </a>
-            <a href="#" className="list-group-item list-group-item-action">
-                Morbi leo risus
-                <i className="fas fa-minus-circle float-right"></i>
-            </a>
-            <a href="#" className="list-group-item list-group-item-action">
-                Porta ac consectetur ac
-                <i className="fas fa-minus-circle float-right"></i>
-            </a>
-            <a href="#" className="list-group-item list-group-item-action">
-                Vestibulum at eros
-                <i className="fas fa-minus-circle float-right"></i>
-            </a>
-            <a href="#" className="list-group-item list-group-item-action">
-                <i className="fas fa-plus-circle float-right"></i>
-            </a>
+            {
+                myModules.map(module =>
+                        <EditableItem
+                        to={}/>
+                    )
+            }
+
         </div>
     )
 }
@@ -53,10 +37,31 @@ const stpm = state => {
 
 const dtpm = dispatch => {
     return {
-        createModule: createModuleForCourse(courseId, {title: "New Module"})
+        createModule: (courseId) =>
+            moduleService.createModuleForCourse(courseId, {title: "New Module"})
+                .then(theActualModule => dispatch({
+                    type: 'CREATE_MODULE',
+                    module: theActualModule
+                })),
+        deleteModule: (module) =>
+            moduleService.deleteModule(module._id)
+                .then(status => dispatch({
+                    type: 'DELETE_MODULE',
+                    moduleToDelete: module
+                })),
+        updateModule: (module) =>
+            moduleService.updateModule(module._id, module)
+                .then(status => dispatch({
+                    type: 'UPDATE_MODULE',
+                    module
+                })),
+        findModulesForCourse: (courseId) =>
+            moduleService.findModulesForCourse(courseId)
+                .then(actualModules => dispatch({
+                    type: 'FIND_MODULES_FOR_COURSE',
+                    modules: actualModules
+                }))
     }
 }
 
-const ModuleListContainer = connect()(ModuleList);
-
-export default ModuleListContainer;
+export default connect(stpm, dtpm)(ModuleList);
