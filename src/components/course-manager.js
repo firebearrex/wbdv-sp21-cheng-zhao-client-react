@@ -128,7 +128,7 @@ class CourseManager extends React.Component {
                             <a className="navbar-brand fas fa-bars" href="#"></a>
                             <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>Course Manager</span>
                         </span>
-                            <span className={"input-group col-10 col-lg-8"}>
+                        <span className={"input-group col-10 col-lg-8"}>
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Enter new course title here: </span>
                             </div>

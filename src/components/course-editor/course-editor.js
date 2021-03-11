@@ -43,35 +43,35 @@ const CourseEditor = ({history}) => {
                                 {courseTitle}
                             </span>
                         </span>
-                        <form className={"navbar-nav col-10 col-md-9"}>
-                            <ul className="nav nav-pills nav-fill">
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#">
-                                        Active
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        Link
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        Link
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">
-                                        Disabled
-                                    </a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        <i className="fas fa-plus-circle"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </form>
+                        <ul className="navbar-nav col-10 col-md-9 {/*nav*/} nav-pills nav-fill">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href="#">
+                                    Active
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">
+                                    Link
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">
+                                    Link
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">
+                                    Disabled
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">
+                                    <i className="fas fa-plus-circle"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        {/*<form className={"navbar-nav col-10 col-md-9"}>*/}
+                        {/*</form>*/}
                     </div>
                 </nav>
                 {/*<div className={"extra-top-padding-editor"}>*/}

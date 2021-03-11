@@ -15,7 +15,8 @@ const EditableItem = (
     const [cachedItem, setCachedItem] = useState(item);
     const {moduleId, lessonId, topicId} = useParams();
     return (
-        <a className={`${type === 'module' ? "list-group-item list-group-item-action" : "nav-item nav-link"}  ${active /*|| editing*/ ? 'active' : ''}`}
+        <a className={`${type === 'module' ? "list-group-item list-group-item-action" : "nav-item nav-link"} 
+        ${active || editing ? 'active' : ''}`}
            aria-current={"true"}
            key={key}>
             {
@@ -35,6 +36,7 @@ const EditableItem = (
                 editing &&
                 <>
                     <input
+                        type={"text"}
                         onChange={(event =>
                             setCachedItem({
                                 // ...cachedItem,
@@ -43,18 +45,21 @@ const EditableItem = (
                             }))}
                         value={cachedItem.title}
                     />
-                    <i
-                        className={"fas fa-check"}
-                        onClick={() => {
-                            setEditing(false);
-                            updateItem(cachedItem);
-                        }}></i>
-                    <i
-                        className={"fas fa-trash"}
-                        onClick={() => {
-                            setEditing(false);
-                            deleteItem(item);
-                        }}></i>
+                    <span className={"float-right"}>
+                        <i
+                            className={"fas fa-check mr-3"}
+                            onClick={() => {
+                                setEditing(false);
+                                updateItem(cachedItem);
+                            }}></i>
+                        <i
+                            className={"fas fa-trash"}
+                            onClick={() => {
+                                setEditing(false);
+                                deleteItem(item);
+                            }}></i>
+                    </span>
+
                 </>
             }
         </a>

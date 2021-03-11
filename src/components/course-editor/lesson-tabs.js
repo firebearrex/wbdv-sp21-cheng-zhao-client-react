@@ -20,8 +20,8 @@ const LessonTabs = (
         }
     }, [courseId,moduleId]);
     return (
-        <>
-            <ul className={"nav nav-pills nav-fill"}>
+        <div className={"row mt-3 mr-3"}>
+            <ul className={"nav nav-pills col-11 {/*nav-fill*/}"}>
                 {
                     myLessons.map(lesson =>
                         <EditableItem
@@ -34,13 +34,13 @@ const LessonTabs = (
                             key={lesson._id}
                         />)
                 }
-                <a className={"nav-item nav-link"}
-                   aria-current={"true"}>
-                    <i onClick={() => createLesson(moduleId)}
-                    className={"fas fa-plus-circle fa-2x"}></i>
-                </a>
             </ul>
-        </>
+            <a className={"{/*nav-item nav-link*/} col-1"}
+               aria-current={"true"}>
+                <i onClick={() => createLesson(moduleId)}
+                className={"fas fa-plus-circle fa-2x"}></i>
+            </a>
+        </div>
     )
 }
 

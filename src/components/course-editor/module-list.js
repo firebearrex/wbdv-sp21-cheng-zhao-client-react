@@ -19,7 +19,7 @@ const ModuleList = (
         }
     }, [courseId])
     return (
-        <div className="list-group list-group-flush mt-3 editor-module-list">
+        <div className="list-group list-group-flush mt-3 ml-3 editor-module-list">
             {
                 myModules.map(module =>
                     <EditableItem
