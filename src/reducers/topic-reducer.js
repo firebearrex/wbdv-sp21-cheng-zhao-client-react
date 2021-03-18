@@ -1,6 +1,6 @@
 const initialState = {
     topics: []
-}
+};
 
 const topicReducer = (state = initialState, action) => {
     switch (action.type) {
