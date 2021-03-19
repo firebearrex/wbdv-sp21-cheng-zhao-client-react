@@ -39,14 +39,16 @@ const widgetReducer = (state = initialState, action) => {
                     }
                 })
             };
-        case 'FIND_ALL_WIDGETS':
-            return {
-
-            };
-        case 'FIND_WIDGET':
-            return {
-
-            };
+        // case 'FIND_ALL_WIDGETS':
+        //     return {
+        //
+        //     };
+        // case 'FIND_WIDGET':
+        //     return {
+        //
+        //     };
+        default:
+            return state;
     }
 }
 
