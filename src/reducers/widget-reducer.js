@@ -1,15 +1,24 @@
+import {
+    CREATE_WIDGET,
+    UPDATE_WIDGET,
+    DELETE_WIDGET,
+    FIND_ALL_WIDGETS_FOR_TOPIC,
+    FIND_ALL_WIDGETS,
+    FIND_WIDGET
+} from "../actions/widget-actions";
+
 const initialState = {
     widgets: []
 };
 
 const widgetReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'FIND_ALL_WIDGET_FOR_TOPIC':
+        case FIND_ALL_WIDGETS_FOR_TOPIC:
             return {
                 ...state,
                 widgets: action.widgets
             };
-        case 'CREATE_WIDGET':
+        case CREATE_WIDGET:
             return {
                 ...state,
                 widgets: [
@@ -17,36 +26,44 @@ const widgetReducer = (state = initialState, action) => {
                     action.widget
                 ]
             };
-        case 'DELETE_WIDGET':
+        case DELETE_WIDGET:
             return {
                 ...state,
                 widgets: state.widgets.filter(widget => {
-                    if (widget._id === action.widget._id) {
+                    if (widget.id === action.widget.id) {
                         return false;
                     } else {
                         return true;
                     }
                 })
             };
-        case 'UPDATE_WIDGET':
+        case UPDATE_WIDGET:
             return {
                 ...state,
                 widgets: state.widgets.map(widget => {
-                    if (widget._id === action.widget._id) {
+                    if (widget.id === action.widget.id) {
                         return action.widget;
                     } else {
                         return widget;
                     }
                 })
             };
-        // case 'FIND_ALL_WIDGETS':
-        //     return {
-        //
-        //     };
-        // case 'FIND_WIDGET':
-        //     return {
-        //
-        //     };
+        case FIND_ALL_WIDGETS:
+            return {
+                ...state,
+                widgets: action.widgets
+            };
+        case FIND_WIDGET:
+            return {
+                ...state,
+                widgets: state.widgets.filter(widget => {
+                    if (widget.id === action.widget.id) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                })
+            };
         default:
             return state;
     }

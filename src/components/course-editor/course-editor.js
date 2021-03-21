@@ -3,6 +3,7 @@ import {Link, Route, useParams} from "react-router-dom";
 import moduleReducer from "../../reducers/module-reducer";
 import lessonReducer from "../../reducers/lesson-reducer";
 import topicReducer from "../../reducers/topic-reducer";
+import widgetReducer from "../../reducers/widget-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
@@ -14,7 +15,8 @@ import "../course-manager.css";
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
     lessonReducer: lessonReducer,
-    topicReducer: topicReducer
+    topicReducer: topicReducer,
+    widgetReducer: widgetReducer
 })
 
 const store = createStore(reducer);
@@ -24,7 +26,7 @@ const CourseEditor = ({history}) => {
     const [courseTitle, setCourseTitle] = useState('');
     useEffect(() => {
         console.log(`Fetching course title for: ${courseId}`);
-        if (typeof courseId !== "undefined" && moduleId !== "undefined") {
+        if (typeof courseId !== "undefined" && courseId !== "undefined") {
             courseService.findCourseById(courseId)
                 .then(currCourse => setCourseTitle(currCourse.title))
         }
@@ -85,7 +87,7 @@ const CourseEditor = ({history}) => {
                 {/*</div>*/}
 
                 <div className="row extra-top-padding">
-                    <div className="col-4">
+                    <div className="col-3">
                         <ModuleList/>
 
                         {/*<div className="list-group list-group-flush mt-3 editor-module-list">*/}
@@ -115,7 +117,7 @@ const CourseEditor = ({history}) => {
                         {/*</div>*/}
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-9">
                         <Route path={[
                             "/courses/:layout/edit/:courseId/modules/:moduleId",
                             "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
@@ -152,6 +154,15 @@ const CourseEditor = ({history}) => {
                             "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
                                exact={true}>
                             <TopicPills/>
+                        </Route>
+
+                        <br/>
+
+                        <Route path={[
+                            "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
+                            "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets/:widgetsId"]}
+                               exact={true}>
+
                         </Route>
                     </div>
                 </div>
