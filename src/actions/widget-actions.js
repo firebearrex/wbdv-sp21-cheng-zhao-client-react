@@ -19,7 +19,7 @@ export const createWidget = (dispatch, topicId) => {
     widgetService.createWidget(
         topicId,
         {
-            type: "Heading",
+            type: "HEADING",
             size: 1,
             text: "New Widget"
         })

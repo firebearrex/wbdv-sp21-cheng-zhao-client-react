@@ -1,0 +1,122 @@
+import React, {useState} from 'react';
+import {Link} from "react-router-dom";
+
+const HeadingWidget = (
+    {
+        widget,
+        editing,
+        updateWidget,
+        deleteWidget,
+        setEditingWidgets
+    }) => {
+    const [cachedWidget, setCachedWidget] = useState(widget);
+
+    return (
+        <>
+            <form className={"col-10"}>
+                {/*{*/}
+                {/*    !editing &&*/}
+                {/*        */}
+                {/*}*/}
+                {
+                    editing &&
+                    <>
+                        <select className={"form-control"}>
+                            <option selected>Current type: ${widget.type}</option>
+                            <option value={"HEADING"}>
+                                Heading
+                            </option>
+                            <option value={"PARAGRAPH"}>
+                                Paragraph
+                            </option>
+                            <option value={"LIST"}
+                                    className={"disabled"}>
+                                List
+                            </option>
+                            <option value={"IMAGE"}
+                                    className={"disabled"}>
+                                Image
+                            </option>
+                            <option value={"HYPERLINK"}
+                                    className={"disabled"}>
+                                Hyperlink
+                            </option>
+                            <option value={"VIDEO"}
+                                    className={"disabled"}>
+                                Video
+                            </option>
+                        </select>
+                        <input type={"text"}
+                               onChange={event => {
+                                   setCachedWidget(prevState => ({
+                                       ...widget,
+                                       text: event.target.value
+                                   }))
+                               }}
+                               className={"form-control"}
+                               value={cachedWidget.text}/>
+                        <select className={"form-control"}>
+                            <option selected>Current size: Heading ${widget.size}</option>
+                            <option value={1}>Heading 1</option>
+                            <option value={2}>Heading 2</option>
+                            <option value={3}>Heading 3</option>
+                            <option value={4}>Heading 4</option>
+                            <option value={5}>Heading 5</option>
+                            <option value={6}>Heading 6</option>
+                        </select>
+                    </>
+                }
+                {
+                    !editing &&
+                    <>
+                        {widget.size === 1 && <h1>{widget.text}</h1>}
+                        {widget.size === 2 && <h2>{widget.text}</h2>}
+                        {widget.size === 3 && <h3>{widget.text}</h3>}
+                        {widget.size === 4 && <h4>{widget.text}</h4>}
+                        {widget.size === 5 && <h5>{widget.text}</h5>}
+                        {widget.size === 6 && <h6>{widget.text}</h6>}
+                    </>
+                }
+            </form>
+            <div className={"col-2"}>
+                {
+                    !editing &&
+                    <i onClick={() => {
+                        setEditingWidgets(prevState => [
+                            ...prevState,
+                            widget
+                        ])
+                    }}
+                       className={"fas fa-2x fa-cog float-right"}></i>
+                }
+                {
+                    editing &&
+                    <>
+                        <i onClick={() => {
+                            // let editingWidget = thisEditingWidget(editingWidgets, widget.id);
+                            // updateWidget(editingWidget);
+                            updateWidget(cachedWidget);
+                            setEditingWidgets(prevState =>
+                                prevState.filter(prevEditingWidget =>
+                                    prevEditingWidget.id !== widget.id
+                                ))
+                        }}
+                           className={"fas fa-2x fa-check float-right mr-3"}></i>
+                        <i onClick={() => {
+                            // let editingWidget = thisEditingWidget(editingWidgets, widget.id);
+                            // deleteWidget(editingWidget);
+                            deleteWidget(widget);
+                            setEditingWidgets(prevState =>
+                                prevState.filter(prevEditingWidget =>
+                                    prevEditingWidget.id !== widget.id
+                                ))
+                        }}
+                           className={"fas fa-2x fa-trash float-right"}></i>
+                    </>
+                }
+            </div>
+        </>
+    )
+};
+
+export default HeadingWidget;

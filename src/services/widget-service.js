@@ -1,5 +1,5 @@
-const TOPICS_URL = "/api/topics";
-const WIDGETS_URL = "/api/widgets";
+const TOPICS_URL = "http://localhost:8080/api/topics";
+const WIDGETS_URL = "http://localhost:8080/api/widgets";
 
 export const findWidgetsForTopic = (topicId) =>
     fetch(`${TOPICS_URL}/${topicId}/widgets`)

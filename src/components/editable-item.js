@@ -14,6 +14,7 @@ const EditableItem = (
     const [editing, setEditing] = useState(false);
     const [cachedItem, setCachedItem] = useState(item);
     const {moduleId, lessonId, topicId} = useParams();
+
     return (
         <a className={`${type === 'module' ? "list-group-item list-group-item-action" : "nav-item nav-link"} 
         ${active || editing ? 'active' : ''}`}

@@ -46,7 +46,7 @@ const TopicPills = (
 
 const stpm = state => {
     return {
-        ...state,
+        // ...state,
         myTopics: state.topicReducer.topics
     }
 }

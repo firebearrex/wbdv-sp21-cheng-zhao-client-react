@@ -43,7 +43,7 @@ const ModuleList = (
 
 const stpm = state => {
     return {
-        ...state,
+        // ...state,
         myModules: state.moduleReducer.modules
     }
 }

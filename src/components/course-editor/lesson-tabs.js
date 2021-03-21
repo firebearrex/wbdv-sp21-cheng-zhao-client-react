@@ -46,7 +46,7 @@ const LessonTabs = (
 
 const stpm = state => {
     return {
-        ...state,
+        // ...state,
         myLessons: state.lessonReducer.lessons
     }
 }
