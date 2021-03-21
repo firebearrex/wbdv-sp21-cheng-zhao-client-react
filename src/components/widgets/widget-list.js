@@ -42,25 +42,33 @@ const WidgetList = (
         })
     }
 
+    const addEditingWidget = (widget) => {
+        setEditingWidgets(prevState => [
+            ...prevState,
+            widget
+        ])
+    }
+
     return (
         <div className={"row mt-3 mr-3 ml-1"}>
-            <div className={"list-group col-11"}>
+            <ul className={"list-group col-11"}>
                 {
                     myWidgets.map(widget => {
-                            let editing = isEditingWidget(editingWidgets, widget);
+                            // let editing = isEditingWidget(editingWidgets, widget);
                             return (
-                                <a
-                                    className={"list-group-item list-group-item-action row"}
+                                <li
+                                    className={"list-group-item /*list-group-item-action*/"}
                                     key={widget.id}>
                                     {
                                         widget.type === 'HEADING' &&
                                         <HeadingWidget
                                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
-                                            editing={editing}
                                             widget={widget}
                                             updateWidget={updateWidget}
                                             deleteWidget={deleteWidget}
-                                            setEditingWidgets={setEditingWidgets}
+                                            // editingWidgets={editingWidgets}
+                                            // setEditingWidgets={setEditingWidgets}
+                                            // addEditingWidget={addEditingWidget}
                                         />
                                     }
                                     {
@@ -68,18 +76,19 @@ const WidgetList = (
                                         <ParagraphWidget
                                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
                                             widget={widget}
-                                            editing={editing}
                                             updateWidget={updateWidget}
                                             deleteWidget={deleteWidget}
-                                            setEditingWidgets={setEditingWidgets}
+                                            // editingWidgets={editingWidgets}
+                                            // setEditingWidgets={setEditingWidgets}
+                                            // addEditingWidget={addEditingWidget}
                                         />
                                     }
-                                </a>
+                                </li>
                             )
                         }
                     )
                 }
-            </div>
+            </ul>
             <a className={"col-1"}>
                 <i onClick={() => createWidget(topicId)}
                    className={"fas fa-plus-circle fa-2x"}></i>

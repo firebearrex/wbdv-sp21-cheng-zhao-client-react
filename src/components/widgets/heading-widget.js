@@ -3,26 +3,53 @@ import {Link} from "react-router-dom";
 
 const HeadingWidget = (
     {
+        to,
         widget,
-        editing,
         updateWidget,
-        deleteWidget,
-        setEditingWidgets
+        deleteWidget
+        // editingWidgets,
+        // setEditingWidgets,
+        // addEditingWidget
     }) => {
+    const [editing, setEditing] = useState(false);
     const [cachedWidget, setCachedWidget] = useState(widget);
 
     return (
         <>
-            <form className={"col-10"}>
-                {/*{*/}
-                {/*    !editing &&*/}
-                {/*        */}
-                {/*}*/}
-                {
-                    editing &&
-                    <>
+            {
+                !editing &&
+                <>
+                    <i onClick={() => setEditing(true)}
+                       className={"fas fa-2x fa-cog float-right"}></i>
+                    <Link
+                        to={to}>
+                        {widget.size === 1 && <h1>{widget.text}</h1>}
+                        {widget.size === 2 && <h2>{widget.text}</h2>}
+                        {widget.size === 3 && <h3>{widget.text}</h3>}
+                        {widget.size === 4 && <h4>{widget.text}</h4>}
+                        {widget.size === 5 && <h5>{widget.text}</h5>}
+                        {widget.size === 6 && <h6>{widget.text}</h6>}
+                    </Link>
+                </>
+            }
+            {
+                editing &&
+                <>
+                    <span className={"float-right"}>
+                        <i className={"fas fa-check mr-3"}
+                           onClick={() => {
+                               setEditing(false);
+                               updateWidget(cachedWidget);
+                           }}></i>
+                        <i className={"fas fa-trash"}
+                           onClick={() => {
+                               setEditing(false);
+                               deleteWidget(widget);
+                           }}></i>
+                    </span>
+                    <form>
                         <select className={"form-control"}>
-                            <option selected>Current type: ${widget.type}</option>
+                            <option selected>Current type: {widget.type}</option>
                             <option value={"HEADING"}>
                                 Heading
                             </option>
@@ -56,7 +83,7 @@ const HeadingWidget = (
                                className={"form-control"}
                                value={cachedWidget.text}/>
                         <select className={"form-control"}>
-                            <option selected>Current size: Heading ${widget.size}</option>
+                            <option selected>Current size: Heading {widget.size}</option>
                             <option value={1}>Heading 1</option>
                             <option value={2}>Heading 2</option>
                             <option value={3}>Heading 3</option>
@@ -64,59 +91,11 @@ const HeadingWidget = (
                             <option value={5}>Heading 5</option>
                             <option value={6}>Heading 6</option>
                         </select>
-                    </>
-                }
-                {
-                    !editing &&
-                    <>
-                        {widget.size === 1 && <h1>{widget.text}</h1>}
-                        {widget.size === 2 && <h2>{widget.text}</h2>}
-                        {widget.size === 3 && <h3>{widget.text}</h3>}
-                        {widget.size === 4 && <h4>{widget.text}</h4>}
-                        {widget.size === 5 && <h5>{widget.text}</h5>}
-                        {widget.size === 6 && <h6>{widget.text}</h6>}
-                    </>
-                }
-            </form>
-            <div className={"col-2"}>
-                {
-                    !editing &&
-                    <i onClick={() => {
-                        setEditingWidgets(prevState => [
-                            ...prevState,
-                            widget
-                        ])
-                    }}
-                       className={"fas fa-2x fa-cog float-right"}></i>
-                }
-                {
-                    editing &&
-                    <>
-                        <i onClick={() => {
-                            // let editingWidget = thisEditingWidget(editingWidgets, widget.id);
-                            // updateWidget(editingWidget);
-                            updateWidget(cachedWidget);
-                            setEditingWidgets(prevState =>
-                                prevState.filter(prevEditingWidget =>
-                                    prevEditingWidget.id !== widget.id
-                                ))
-                        }}
-                           className={"fas fa-2x fa-check float-right mr-3"}></i>
-                        <i onClick={() => {
-                            // let editingWidget = thisEditingWidget(editingWidgets, widget.id);
-                            // deleteWidget(editingWidget);
-                            deleteWidget(widget);
-                            setEditingWidgets(prevState =>
-                                prevState.filter(prevEditingWidget =>
-                                    prevEditingWidget.id !== widget.id
-                                ))
-                        }}
-                           className={"fas fa-2x fa-trash float-right"}></i>
-                    </>
-                }
-            </div>
+                    </form>
+                </>
+            }
         </>
     )
-};
+}
 
 export default HeadingWidget;
