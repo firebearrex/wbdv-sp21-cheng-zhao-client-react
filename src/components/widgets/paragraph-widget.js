@@ -45,8 +45,15 @@ const ParagraphWidget = (
                            }}></i>
                     </span>
                     <form>
-                        <select className={"form-control"}>
-                            <option selected>Current type: {widget.type}</option>
+                        <select className={"form-control"}
+                                value={cachedWidget.type}
+                                onChange={event => {
+                                    setCachedWidget(prevState => ({
+                                        ...widget,
+                                        type: event.target.value
+                                    }))
+                                }}>
+                            <option value={cachedWidget.type}>Current type: {cachedWidget.type}</option>
                             <option value={"HEADING"}>
                                 Heading
                             </option>
@@ -54,19 +61,19 @@ const ParagraphWidget = (
                                 Paragraph
                             </option>
                             <option value={"LIST"}
-                                    className={"disabled"}>
+                                    disabled>
                                 List
                             </option>
                             <option value={"IMAGE"}
-                                    className={"disabled"}>
+                                    disabled>
                                 Image
                             </option>
                             <option value={"HYPERLINK"}
-                                    className={"disabled"}>
+                                    disabled>
                                 Hyperlink
                             </option>
                             <option value={"VIDEO"}
-                                    className={"disabled"}>
+                                    disabled>
                                 Video
                             </option>
                         </select>
@@ -84,6 +91,6 @@ const ParagraphWidget = (
             }
         </>
     )
-}
+};
 
 export default ParagraphWidget;

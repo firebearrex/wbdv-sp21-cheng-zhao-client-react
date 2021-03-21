@@ -48,8 +48,15 @@ const HeadingWidget = (
                            }}></i>
                     </span>
                     <form>
-                        <select className={"form-control"}>
-                            <option selected>Current type: {widget.type}</option>
+                        <select className={"form-control"}
+                                value={cachedWidget.type}
+                                onChange={event => {
+                                    setCachedWidget(prevState => ({
+                                        ...widget,
+                                        type: event.target.value
+                                    }))
+                                }}>
+                            <option value={cachedWidget.type}>Current type: {cachedWidget.type}</option>
                             <option value={"HEADING"}>
                                 Heading
                             </option>
@@ -57,19 +64,19 @@ const HeadingWidget = (
                                 Paragraph
                             </option>
                             <option value={"LIST"}
-                                    className={"disabled"}>
+                                    disabled>
                                 List
                             </option>
                             <option value={"IMAGE"}
-                                    className={"disabled"}>
+                                    disabled>
                                 Image
                             </option>
                             <option value={"HYPERLINK"}
-                                    className={"disabled"}>
+                                    disabled>
                                 Hyperlink
                             </option>
                             <option value={"VIDEO"}
-                                    className={"disabled"}>
+                                    disabled>
                                 Video
                             </option>
                         </select>
@@ -82,8 +89,15 @@ const HeadingWidget = (
                                }}
                                className={"form-control"}
                                value={cachedWidget.text}/>
-                        <select className={"form-control"}>
-                            <option selected>Current size: Heading {widget.size}</option>
+                        <select className={"form-control"}
+                                value={cachedWidget.size}
+                                onChange={event => {
+                                    setCachedWidget(prevState => ({
+                                        ...widget,
+                                        size: event.target.value
+                                    }))
+                                }}>
+                            <option value={cachedWidget.size}>Current size: Heading {cachedWidget.size}</option>
                             <option value={1}>Heading 1</option>
                             <option value={2}>Heading 2</option>
                             <option value={3}>Heading 3</option>
@@ -96,6 +110,6 @@ const HeadingWidget = (
             }
         </>
     )
-}
+};
 
 export default HeadingWidget;
