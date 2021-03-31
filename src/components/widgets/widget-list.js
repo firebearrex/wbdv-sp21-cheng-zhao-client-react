@@ -5,6 +5,7 @@ import widgetService from "../../services/widget-service";
 import widgetActions from "../../actions/widget-actions";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
+import ListWidget from './list-widget';
 
 const WidgetList = (
     {
@@ -82,6 +83,15 @@ const WidgetList = (
                                             // setEditingWidgets={setEditingWidgets}
                                             // addEditingWidget={addEditingWidget}
                                         />
+                                    }
+                                    {
+                                        widget.type === 'LIST' &&
+                                            <ListWidget
+                                                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                                widget={widget}
+                                                updateWidget={updateWidget}
+                                                deleteWidget={deleteWidget}
+                                            />
                                     }
                                 </li>
                             )
