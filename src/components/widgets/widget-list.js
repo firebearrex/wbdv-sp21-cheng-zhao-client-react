@@ -96,7 +96,12 @@ const WidgetList = (
                                     }
                                     {
                                         widget.type === 'IMAGE' &&
-                                            <ImageWidget/>
+                                            <ImageWidget
+                                                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                                widget={widget}
+                                                updateWidget={updateWidget}
+                                                deleteWidget={deleteWidget}
+                                            />
                                     }
                                 </li>
                             )

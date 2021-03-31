@@ -14,6 +14,15 @@ const HeadingWidget = (
     const [editing, setEditing] = useState(false);
     const [cachedWidget, setCachedWidget] = useState(widget);
 
+    const updateType = event => {
+        setCachedWidget({
+            ...widget,
+            type: event.target.value
+        });
+        updateWidget(cachedWidget);
+        setEditing(false);
+    }
+
     return (
         <>
             {
@@ -38,24 +47,27 @@ const HeadingWidget = (
                     <span className={"float-right"}>
                         <i className={"fas fa-check mr-3"}
                            onClick={() => {
-                               setEditing(false);
                                updateWidget(cachedWidget);
+                               setEditing(false);
                            }}></i>
                         <i className={"fas fa-trash"}
                            onClick={() => {
-                               setEditing(false);
                                deleteWidget(widget);
+                               setEditing(false);
                            }}></i>
                     </span>
                     <form>
                         <select className={"form-control"}
-                                value={cachedWidget.type}
-                                onChange={event => {
-                                    setCachedWidget(prevState => ({
-                                        ...widget,
-                                        type: event.target.value
-                                    }))
-                                }}>
+                            /*value={cachedWidget.type}*/
+                            // onChange={event => {
+                            //     setCachedWidget(prevState => ({
+                            //         ...widget,
+                            //         type: event.target.value
+                            //     }));
+                            //     updateWidget(cachedWidget);
+                            //     setEditing(false);
+                            // }}
+                                onChange={event => updateType(event)}>
                             <option value={cachedWidget.type}>Current type: {cachedWidget.type}</option>
                             <option value={"HEADING"}>
                                 Heading
@@ -63,12 +75,10 @@ const HeadingWidget = (
                             <option value={"PARAGRAPH"}>
                                 Paragraph
                             </option>
-                            <option value={"LIST"}
-                                    disabled>
+                            <option value={"LIST"}>
                                 List
                             </option>
-                            <option value={"IMAGE"}
-                                    disabled>
+                            <option value={"IMAGE"}>
                                 Image
                             </option>
                             <option value={"HYPERLINK"}

@@ -16,25 +16,25 @@ const ListWidget = (
             {
                 editing &&
                 <>
-                        <span className={"float-right"}>
-                            <i className={"fas fa-check mr-3"}
-                               onClick={() => {
-                                   setEditing(false);
-                                   updateWidget(cachedWidget);
-                               }}></i>
-                            <i className={"fas fa-trash"}
-                               onClick={() => {
-                                   setEditing(false);
-                                   deleteWidget(widget);
-                               }}></i>
-                        </span>
+                    <span className={"float-right"}>
+                        <i className={"fas fa-check mr-3"}
+                           onClick={() => {
+                               setEditing(false);
+                               updateWidget(cachedWidget);
+                           }}></i>
+                        <i className={"fas fa-trash"}
+                           onClick={() => {
+                               setEditing(false);
+                               deleteWidget(widget);
+                           }}></i>
+                    </span>
                     <input
                         type="checkbox"
                         checked={cachedWidget.widgetOrdered}
                         onChange={event => {
                             setCachedWidget(prevState => ({
                                 ...widget,
-                                widgetOrdered: event.target.value
+                                widgetOrdered: event.target.checked
                             }))
                         }}/> Ordered
                     List items
@@ -49,7 +49,7 @@ const ListWidget = (
                         className={"form-control"}
                         cols="30"
                         rows="10">
-                        </textarea>
+                    </textarea>
                 </>
             }
             {
@@ -59,10 +59,10 @@ const ListWidget = (
                        className={"fas fa-2x fa-cog float-right"}></i>
                     {
                         widget.widgetOrdered &&
-                        <ol className={"list-group"}>
+                        <ol>
                             {
-                                widget.text.split('\n').map(singleLine =>
-                                    <li className={"list-group-item"}>
+                                widget && widget.text && widget.text.split('\n').map(singleLine =>
+                                    <li>
                                         {singleLine}
                                     </li>
                                 )
@@ -71,10 +71,10 @@ const ListWidget = (
                     }
                     {
                         !widget.widgetOrdered &&
-                        <ul className={"list-group"}>
+                        <ul>
                             {
-                                widget.text.split('\n').map(singleLine =>
-                                    <li className={"list-group-item"}>
+                                widget && widget.text && widget.text.split('\n').map(singleLine =>
+                                    <li>
                                         {singleLine}
                                     </li>
                                 )

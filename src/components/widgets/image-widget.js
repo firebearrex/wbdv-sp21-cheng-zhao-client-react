@@ -18,9 +18,12 @@ const ImageWidget = (
                     <i onClick={() => setEditing(true)}
                        className={"fas fa-2x fa-cog float-right"}></i>
                     <img
+                        // Not sure if the "alt" attribute can prevent application from failure when .src/.width/.height are null?
                         src={widget.src}
                         width={widget.width}
-                        height={widget.height}/>
+                        height={widget.height}
+                        alt={"Please update the source and width/height info for this Image Widget."}
+                    />
                 </>
 
             }
@@ -47,6 +50,7 @@ const ImageWidget = (
                                 src: event.target.value
                             }))
                         }}
+                        placeholder={cachedWidget.src? "" : "Enter your image source URL here"}
                         value={cachedWidget.src}
                         className={"form-control"}
                     />
@@ -58,6 +62,7 @@ const ImageWidget = (
                                 width: event.target.value
                             }))
                         }}
+                        placeholder={cachedWidget.width? "" : "Enter image width to be displayed here"}
                         value={cachedWidget.width}
                         className={"form-control"}
                     />
@@ -69,6 +74,7 @@ const ImageWidget = (
                                 height: event.target.value
                             }))
                         }}
+                        placeholder={cachedWidget.height? "" : "Enter image height to be displayed here"}
                         value={cachedWidget.height}
                         className={"form-control"}
                     />

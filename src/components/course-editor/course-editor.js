@@ -35,9 +35,9 @@ const CourseEditor = ({history}) => {
     return (
         <Provider store={store}>
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+                <nav className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
                     <div className="container-fluid row">
-                        <span className={"col-2 col-md-3 mr-auto"}>
+                        <span className={"col-2 col-md-5 mr-auto"}>
                             <Link to={"/"}
                                   className={"navbar-brand fas fa-home"}></Link>
                             <Link to={`/courses/${layout}`}
@@ -46,7 +46,7 @@ const CourseEditor = ({history}) => {
                                 {courseTitle}
                             </span>
                         </span>
-                        <ul className="navbar-nav col-10 col-md-9 {/*nav*/} nav-pills nav-fill">
+                        <ul className="navbar-nav col-10 col-md-7 {/*nav*/} nav-pills nav-fill">
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#">
                                     Active
