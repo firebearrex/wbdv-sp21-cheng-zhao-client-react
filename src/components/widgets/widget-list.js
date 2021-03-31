@@ -6,6 +6,7 @@ import widgetActions from "../../actions/widget-actions";
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import ListWidget from './list-widget';
+import ImageWidget from './image-widget';
 
 const WidgetList = (
     {
@@ -92,6 +93,10 @@ const WidgetList = (
                                                 updateWidget={updateWidget}
                                                 deleteWidget={deleteWidget}
                                             />
+                                    }
+                                    {
+                                        widget.type === 'IMAGE' &&
+                                            <ImageWidget/>
                                     }
                                 </li>
                             )

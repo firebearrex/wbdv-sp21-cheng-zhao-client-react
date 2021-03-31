@@ -55,6 +55,8 @@ const ListWidget = (
             {
                 !editing &&
                 <>
+                    <i onClick={() => setEditing(true)}
+                       className={"fas fa-2x fa-cog float-right"}></i>
                     {
                         widget.widgetOrdered &&
                         <ol className={"list-group"}>
