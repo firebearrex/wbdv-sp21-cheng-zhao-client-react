@@ -7,7 +7,7 @@ const EditableItem = (
         type,
         deleteItem,
         updateItem,
-        item = {title: "Some Title", _id: "ABC"},
+        item,
         active,
         key
     }) => {

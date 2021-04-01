@@ -5,18 +5,22 @@ const ImageWidget = (
         to,
         widget,
         updateWidget,
-        deleteWidget
+        deleteWidget,
+        editing,
+        setEditing,
+        cachedWidget,
+        setCachedWidget
     }) => {
-    const [editing, setEditing] = useState(false);
-    const [cachedWidget, setCachedWidget] = useState(widget);
+    // const [editing, setEditing] = useState(false);
+    // const [cachedWidget, setCachedWidget] = useState(widget);
 
     return (
         <>
             {
                 !editing &&
                 <>
-                    <i onClick={() => setEditing(true)}
-                       className={"fas fa-2x fa-cog float-right"}></i>
+                    {/*<i onClick={() => setEditing(true)}*/}
+                    {/*   className={"fas fa-2x fa-cog float-right"}></i>*/}
                     <img
                         // Not sure if the "alt" attribute can prevent application from failure when .src/.width/.height are null?
                         src={widget.src}
@@ -30,18 +34,18 @@ const ImageWidget = (
             {
                 editing &&
                 <>
-                    <span className={"float-right"}>
-                        <i className={"fas fa-check mr-3"}
-                           onClick={() => {
-                               setEditing(false);
-                               updateWidget(cachedWidget);
-                           }}></i>
-                        <i className={"fas fa-trash"}
-                           onClick={() => {
-                               setEditing(false);
-                               deleteWidget(widget);
-                           }}></i>
-                    </span>
+                    {/*<span className={"float-right"}>*/}
+                    {/*    <i className={"fas fa-check mr-3"}*/}
+                    {/*       onClick={() => {*/}
+                    {/*           setEditing(false);*/}
+                    {/*           updateWidget(cachedWidget);*/}
+                    {/*       }}></i>*/}
+                    {/*    <i className={"fas fa-trash"}*/}
+                    {/*       onClick={() => {*/}
+                    {/*           setEditing(false);*/}
+                    {/*           deleteWidget(widget);*/}
+                    {/*       }}></i>*/}
+                    {/*</span>*/}
                     <input
                         type="text"
                         onChange={event => {

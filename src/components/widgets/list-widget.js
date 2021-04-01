@@ -6,38 +6,47 @@ const ListWidget = (
         to,
         widget,
         updateWidget,
-        deleteWidget
+        deleteWidget,
+        editing,
+        setEditing,
+        cachedWidget,
+        setCachedWidget
     }) => {
-    const [editing, setEditing] = useState(false);
-    const [cachedWidget, setCachedWidget] = useState(widget);
+    // const [editing, setEditing] = useState(false);
+    // const [cachedWidget, setCachedWidget] = useState(widget);
 
     return (
         <>
             {
                 editing &&
                 <>
-                    <span className={"float-right"}>
-                        <i className={"fas fa-check mr-3"}
-                           onClick={() => {
-                               setEditing(false);
-                               updateWidget(cachedWidget);
-                           }}></i>
-                        <i className={"fas fa-trash"}
-                           onClick={() => {
-                               setEditing(false);
-                               deleteWidget(widget);
-                           }}></i>
-                    </span>
+                    {/*<span className={"float-right"}>*/}
+                    {/*    <i className={"fas fa-check mr-3"}*/}
+                    {/*       onClick={() => {*/}
+                    {/*           setEditing(false);*/}
+                    {/*           updateWidget(cachedWidget);*/}
+                    {/*       }}></i>*/}
+                    {/*    <i className={"fas fa-trash"}*/}
+                    {/*       onClick={() => {*/}
+                    {/*           setEditing(false);*/}
+                    {/*           deleteWidget(widget);*/}
+                    {/*       }}></i>*/}
+                    {/*</span>*/}
                     <input
-                        type="checkbox"
-                        checked={cachedWidget.widgetOrdered}
-                        onChange={event => {
-                            setCachedWidget(prevState => ({
-                                ...widget,
-                                widgetOrdered: event.target.checked
-                            }))
-                        }}/> Ordered
-                    List items
+                    type="checkbox"
+                    checked={cachedWidget.widgetOrdered}
+                    onChange={event => {
+                        setCachedWidget(prevState => ({
+                            ...widget,
+                            widgetOrdered: event.target.checked
+                        }));
+                        // updateWidget(cachedWidget);
+                        // setEditing(false);
+                    }}
+                    /> Ordered
+                    <br/>
+                    <br/>
+                    <p>List items</p>
                     <textarea
                         value={cachedWidget.text}
                         onChange={event => {
@@ -55,8 +64,8 @@ const ListWidget = (
             {
                 !editing &&
                 <>
-                    <i onClick={() => setEditing(true)}
-                       className={"fas fa-2x fa-cog float-right"}></i>
+                    {/*<i onClick={() => setEditing(true)}*/}
+                    {/*   className={"fas fa-2x fa-cog float-right"}></i>*/}
                     {
                         widget.widgetOrdered &&
                         <ol>

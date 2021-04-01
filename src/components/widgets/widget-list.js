@@ -7,6 +7,7 @@ import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
 import ListWidget from './list-widget';
 import ImageWidget from './image-widget';
+import WidgetItem from './widget-item';
 
 const WidgetList = (
     {
@@ -58,52 +59,54 @@ const WidgetList = (
                     myWidgets.map(widget => {
                             // let editing = isEditingWidget(editingWidgets, widget);
                             return (
-                                <li
-                                    className={"list-group-item /*list-group-item-action*/"}
-                                    key={widget.id}>
-                                    {
-                                        widget.type === 'HEADING' &&
-                                        <HeadingWidget
-                                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
-                                            widget={widget}
-                                            updateWidget={updateWidget}
-                                            deleteWidget={deleteWidget}
-                                            // editingWidgets={editingWidgets}
-                                            // setEditingWidgets={setEditingWidgets}
-                                            // addEditingWidget={addEditingWidget}
-                                        />
-                                    }
-                                    {
-                                        widget.type === 'PARAGRAPH' &&
-                                        <ParagraphWidget
-                                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
-                                            widget={widget}
-                                            updateWidget={updateWidget}
-                                            deleteWidget={deleteWidget}
-                                            // editingWidgets={editingWidgets}
-                                            // setEditingWidgets={setEditingWidgets}
-                                            // addEditingWidget={addEditingWidget}
-                                        />
-                                    }
-                                    {
-                                        widget.type === 'LIST' &&
-                                            <ListWidget
-                                                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
-                                                widget={widget}
-                                                updateWidget={updateWidget}
-                                                deleteWidget={deleteWidget}
-                                            />
-                                    }
-                                    {
-                                        widget.type === 'IMAGE' &&
-                                            <ImageWidget
-                                                to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
-                                                widget={widget}
-                                                updateWidget={updateWidget}
-                                                deleteWidget={deleteWidget}
-                                            />
-                                    }
-                                </li>
+                                // <li
+                                //     className={"list-group-item /*list-group-item-action*/"}
+                                //     key={widget.id}>
+                                //     {
+                                //         widget.type === 'HEADING' &&
+                                //         <HeadingWidget
+                                //             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                //             widget={widget}
+                                //             updateWidget={updateWidget}
+                                //             deleteWidget={deleteWidget}
+                                //         />
+                                //     }
+                                //     {
+                                //         widget.type === 'PARAGRAPH' &&
+                                //         <ParagraphWidget
+                                //             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                //             widget={widget}
+                                //             updateWidget={updateWidget}
+                                //             deleteWidget={deleteWidget}
+                                //         />
+                                //     }
+                                //     {
+                                //         widget.type === 'LIST' &&
+                                //             <ListWidget
+                                //                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                //                 widget={widget}
+                                //                 updateWidget={updateWidget}
+                                //                 deleteWidget={deleteWidget}
+                                //             />
+                                //     }
+                                //     {
+                                //         widget.type === 'IMAGE' &&
+                                //             <ImageWidget
+                                //                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                //                 widget={widget}
+                                //                 updateWidget={updateWidget}
+                                //                 deleteWidget={deleteWidget}
+                                //             />
+                                //     }
+                                // </li>
+
+                                <WidgetItem
+                                    to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                    type={widget.type}
+                                    widget={widget}
+                                    updateWidget={updateWidget}
+                                    deleteWidget={deleteWidget}
+                                />
                             )
                         }
                     )
