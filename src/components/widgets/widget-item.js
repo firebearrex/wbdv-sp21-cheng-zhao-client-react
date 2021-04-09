@@ -21,8 +21,8 @@ const WidgetItem = (
             ...widget,
             type: event.target.value
         });
-        // updateWidget(cachedWidget);
-        // setEditing(false);
+        updateWidget(cachedWidget);
+        setEditing(false);
     }
 
     let options = [

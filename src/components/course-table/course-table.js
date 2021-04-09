@@ -39,6 +39,7 @@ export default class CourseTable extends React.Component {
                         <th className="d-table-cell">Title</th>
                         <th className="d-none d-md-table-cell">Owned By</th>
                         <th className="d-none d-lg-table-cell">Last Modified</th>
+                        <th className={"d-table-cell"}>Quizzes</th>
                         <th className={"d-table-cell"}></th>
                     </tr>
                     </thead>

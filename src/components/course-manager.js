@@ -5,6 +5,7 @@ import CourseEditor from "./course-editor/course-editor";
 import {Link, Route} from "react-router-dom";
 import courseService from "../services/course-service";
 import "./course-manager.css"
+import QuizzesList from './quizzes/quizzes-list';
 
 
 class CourseManager extends React.Component {
@@ -128,7 +129,7 @@ class CourseManager extends React.Component {
                             <a className="navbar-brand fas fa-bars" href="#"></a>
                             <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>Course Manager</span>
                         </span>
-                        <span className={"input-group col-10 col-lg-8"}>
+                            <span className={"input-group col-10 col-lg-8"}>
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Enter new course title here: </span>
                             </div>
@@ -176,6 +177,12 @@ class CourseManager extends React.Component {
                        exact={true}
                        render={(props) =>
                            <CourseEditor {...props}/>}>
+                </Route>
+                <Route path={[
+                    "/courses/:courseId/quizzes"
+                ]}
+                       exact={true}>
+                    <QuizzesList/>
                 </Route>
             </div>
         );

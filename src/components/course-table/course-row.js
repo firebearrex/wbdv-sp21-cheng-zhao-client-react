@@ -50,6 +50,11 @@ const CourseRow = (
             </td>
             <td className={"d-none d-md-table-cell"}>{owner}</td>
             <td className={"d-none d-lg-table-cell"}>{lastModified}</td>
+            <td className={"d-table-cell"}>
+                <Link to={`/courses/${course._id}/quizzes`}>
+                    Take quiz of this course
+                </Link>
+            </td>
             <td className={"row d-table-cell"}>
                 {editing && <i onClick={() => saveTitle()} className="col-2 fas fa-check"></i>}
                 {editing && <i
