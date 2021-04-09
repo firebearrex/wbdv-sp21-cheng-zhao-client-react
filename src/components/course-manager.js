@@ -6,6 +6,7 @@ import {Link, Route} from "react-router-dom";
 import courseService from "../services/course-service";
 import "./course-manager.css"
 import QuizzesList from './quizzes/quizzes-list';
+import Quiz from './quizzes/quiz';
 
 
 class CourseManager extends React.Component {
@@ -164,8 +165,6 @@ class CourseManager extends React.Component {
                     </Route>
 
                     <button onClick={this.addCourse} className="btn fas fa-3x fa-plus-circle bottom-right"></button>
-                    {/*<span>*/}
-                    {/*</span>*/}
                 </Route>
                 <Route path={[
                     "/courses/:layout/edit/:courseId",
@@ -179,11 +178,18 @@ class CourseManager extends React.Component {
                            <CourseEditor {...props}/>}>
                 </Route>
                 <Route path={[
-                    "/courses/:courseId/quizzes"
+                    "/courses/:courseId/quizzes",
+                    "/courses/:courseId/quizzes/:quizId"
                 ]}
                        exact={true}>
                     <QuizzesList/>
                 </Route>
+                {/*<Route path={[*/}
+                {/*    "/courses/:courseId/quizzes/:quizId"*/}
+                {/*]}*/}
+                {/*       exact={true}*/}
+                {/*       component={Quiz}>*/}
+                {/*</Route>*/}
             </div>
         );
     }
