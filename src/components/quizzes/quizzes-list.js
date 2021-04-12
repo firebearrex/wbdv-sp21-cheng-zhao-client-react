@@ -3,10 +3,10 @@ import {Link, Route, useParams} from 'react-router-dom';
 import quizService from '../../services/quiz-service';
 import Quiz from './quiz';
 
-const QuizzesList = () => {
+const QuizzesList = ({setQuizTitle}) => {
     const {courseId} = useParams();
     const [quizzes, setQuizzes] = useState([]);
-    const [quizTitle, setQuizTitle] = useState("");
+    // const [quizTitle, setQuizTitle] = useState("");
 
     useEffect(() => {
         quizService.findAllQuizzes()
@@ -21,15 +21,17 @@ const QuizzesList = () => {
                 "/courses/:courseId/quizzes"
             ]}
                    exact={true}>
-                <div>
-                    <h2>Quizzes {quizzes.length}</h2>
+                <div className={"container"}>
+                    <h2>Quizzes</h2>
                     <ul className={"list-group"}>
                         {
                             quizzes.map(quiz => {
                                 return (
-                                    <li className={"list-group-item-action"}>
+                                    <li className={"list-group-item-action"}
+                                        key={quiz._id}>
                                         <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>
                                             <button
+                                                type={"button"}
                                                 onClick={() => setQuizTitle(quiz.title)}
                                                 className={"btn btn-primary float-right"}
                                             >
@@ -43,13 +45,6 @@ const QuizzesList = () => {
                         }
                     </ul>
                 </div>
-            </Route>
-            <Route
-                path={[
-                    "/courses/:courseId/quizzes/:quizId"
-                ]}
-                exact={true}>
-                <Quiz quizTitle={quizTitle}/>
             </Route>
         </>
     );

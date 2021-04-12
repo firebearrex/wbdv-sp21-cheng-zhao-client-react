@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import questionService from '../../services/question-service';
 import Question from './questions/question';
 
-const Quiz = (quizTitle) => {
+const Quiz = ({quizTitle}) => {
     const {quizId} = useParams();
     const [questions, setQuestions] = useState([]);
 
@@ -13,13 +13,13 @@ const Quiz = (quizTitle) => {
     }, [quizId]);
 
     return (
-        <div>
+        <div className={'container'}>
             <h3>{quizTitle} (number of questions: {questions.length})</h3>
             <ul>
                 {
                     questions.map(question => {
                         return (
-                            <li>
+                            <li key={question._id}>
                                 <Question question={question}/>
                             </li>
                         )

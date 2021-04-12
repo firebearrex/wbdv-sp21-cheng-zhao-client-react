@@ -19,7 +19,7 @@ class CourseManager extends React.Component {
             // {title: "CS0004", owner: "Duck", lastModified: "04/01/2021"}
         ],
         newCourseTitle: '',
-        sdf: 456
+        quizTitle: ''
     }
 
     componentDidMount = () =>
@@ -112,9 +112,17 @@ class CourseManager extends React.Component {
     }
 
     updateNewCourseTitle = event =>
-        this.setState({
+        this.setState((prevState) => ({
+            ...prevState,
             newCourseTitle: event.target.value
-        });
+        }));
+
+    setQuizTitle = (selectedTitle) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            quizTitle: selectedTitle
+        }));
+    }
 
     render() {
         return (
@@ -182,14 +190,15 @@ class CourseManager extends React.Component {
                     "/courses/:courseId/quizzes/:quizId"
                 ]}
                        exact={true}>
-                    <QuizzesList/>
+                    <QuizzesList setQuizTitle={this.setQuizTitle}/>
                 </Route>
-                {/*<Route path={[*/}
-                {/*    "/courses/:courseId/quizzes/:quizId"*/}
-                {/*]}*/}
-                {/*       exact={true}*/}
-                {/*       component={Quiz}>*/}
-                {/*</Route>*/}
+                <Route
+                    path={[
+                        "/courses/:courseId/quizzes/:quizId"
+                    ]}
+                    exact={true}>
+                    <Quiz quizTitle={this.state.quizTitle}/>
+                </Route>
             </div>
         );
     }

@@ -3,7 +3,6 @@ import HeadingWidget from './heading-widget';
 import ParagraphWidget from './paragraph-widget';
 import ListWidget from './list-widget';
 import ImageWidget from './image-widget';
-import Select from 'react-select';
 
 const WidgetItem = (
     {
@@ -24,13 +23,6 @@ const WidgetItem = (
         updateWidget(cachedWidget);
         setEditing(false);
     }
-
-    let options = [
-        {label: 'Heading', value: "HEADING"},
-        {label: 'Paragraph', value: "PARAGRAPH"},
-        {label: 'List', value: "LIST"},
-        {label: 'Image', value: "IMAGE"}
-    ]
 
     return (
         <li
