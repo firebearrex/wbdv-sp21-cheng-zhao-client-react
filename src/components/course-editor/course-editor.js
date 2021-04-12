@@ -26,12 +26,12 @@ const CourseEditor = ({history}) => {
     const {layout, courseId, moduleId, topicId} = useParams();
     const [courseTitle, setCourseTitle] = useState('');
     useEffect(() => {
-        console.log(`Fetching course title for: ${courseId}`);
-        if (typeof courseId !== "undefined" && courseId !== "undefined") {
+        if (typeof courseId !== 'undefined' && courseId !== 'undefined') {
+            console.log(`Fetching course title for: ${courseId}`);
             courseService.findCourseById(courseId)
-                .then(currCourse => setCourseTitle(currCourse.title))
+                .then(currCourse => setCourseTitle(currCourse.title));
         }
-    })
+    }, [courseId]);
     return (
         <Provider store={store}>
             <div>

@@ -1,10 +1,10 @@
-import React from 'react'
-import CourseTable from "./course-table/course-table";
-import CourseGrid from "./course-grid/course-grid";
-import CourseEditor from "./course-editor/course-editor";
-import {Link, Route} from "react-router-dom";
-import courseService from "../services/course-service";
-import "./course-manager.css"
+import React from 'react';
+import CourseTable from './course-table/course-table';
+import CourseGrid from './course-grid/course-grid';
+import CourseEditor from './course-editor/course-editor';
+import {Link, Route} from 'react-router-dom';
+import courseService from '../services/course-service';
+import './course-manager.css';
 import QuizzesList from './quizzes/quizzes-list';
 import Quiz from './quizzes/quiz';
 
@@ -20,7 +20,7 @@ class CourseManager extends React.Component {
         ],
         newCourseTitle: '',
         quizTitle: ''
-    }
+    };
 
     componentDidMount = () =>
         // findAllCourses()
@@ -28,21 +28,21 @@ class CourseManager extends React.Component {
         //         courses: actualCourses
         //     }));
         courseService.findAllCourses()
-            .then(courses => this.setState({courses}))
+            .then(courses => this.setState({courses}));
 
 
     addCourse = () => {
         let newTitle;
         if (this.state.newCourseTitle === '') {
-            newTitle = "New Course";
+            newTitle = 'New Course';
         } else {
             newTitle = this.state.newCourseTitle;
         }
 
         const newCourse = {
             title: newTitle,
-            owner: "Me",
-            lastModified: "01/01/2021"
+            owner: 'Me',
+            lastModified: '01/01/2021'
         };
         // this.state.courses.push(newCourse);
         // this.setState(this.state);
@@ -55,13 +55,13 @@ class CourseManager extends React.Component {
                         course,
                         ...prevState.courses
                     ]
-                }))
-            })
+                }));
+            });
 
         this.setState({
             newCourseTitle: ''
-        })
-    }
+        });
+    };
 
     deleteCourse = (courseToDelete) => {
         // console.log(course);
@@ -93,9 +93,9 @@ class CourseManager extends React.Component {
                     ...prevState,
                     courses: prevState.courses
                         .filter(course => course !== courseToDelete)
-                }))
-            })
-    }
+                }));
+            });
+    };
 
     updateCourse = (updatedCourse) => {
         // console.log(course);
@@ -107,9 +107,9 @@ class CourseManager extends React.Component {
                         .map(
                             course => course._id === updatedCourse._id ? updatedCourse : course
                         )
-                }))
-            })
-    }
+                }));
+            });
+    };
 
     updateNewCourseTitle = event =>
         this.setState((prevState) => ({
@@ -122,7 +122,7 @@ class CourseManager extends React.Component {
             ...prevState,
             quizTitle: selectedTitle
         }));
-    }
+    };
 
     render() {
         return (
@@ -130,15 +130,15 @@ class CourseManager extends React.Component {
                 {/*<h1>Course Manager</h1>*/}
                 {/*<button onClick={this.addCourse}>Add Course</button>*/}
 
-                <Route path={["/courses", "/courses/table", "/courses/grid"]}
+                <Route path={['/courses', '/courses/table', '/courses/grid']}
                        exact={true}>
-                    <nav className={"navbar navbar-expand-md navbar-dark bg-primary fixed-top"}>
-                        <div className={"container-fluid row"}>
-                        <span className={"col-1 col-lg-3"}>
+                    <nav className={'navbar navbar-expand-md navbar-dark bg-primary fixed-top'}>
+                        <div className={'container-fluid row'}>
+                        <span className={'col-1 col-lg-3'}>
                             <a className="navbar-brand fas fa-bars" href="#"></a>
-                            <span className={"navbar-text h5 m-auto d-none d-lg-inline"}>Course Manager</span>
+                            <span className={'navbar-text h5 m-auto d-none d-lg-inline'}>Course Manager</span>
                         </span>
-                            <span className={"input-group col-10 col-lg-8"}>
+                            <span className={'input-group col-10 col-lg-8'}>
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Enter new course title here: </span>
                             </div>
@@ -155,7 +155,7 @@ class CourseManager extends React.Component {
                         </div>
                     </nav>
 
-                    <Route path={["/courses", "/courses/table"]}
+                    <Route path={['/courses', '/courses/table']}
                            exact={true}>
                         <CourseTable
                             addCourse={this.addCourse}
@@ -163,7 +163,7 @@ class CourseManager extends React.Component {
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>
                     </Route>
-                    <Route path={"/courses/grid"}
+                    <Route path={'/courses/grid'}
                            exact={true}>
                         <CourseGrid
                             addCourse={this.addCourse}
@@ -175,33 +175,35 @@ class CourseManager extends React.Component {
                     <button onClick={this.addCourse} className="btn fas fa-3x fa-plus-circle bottom-right"></button>
                 </Route>
                 <Route path={[
-                    "/courses/:layout/edit/:courseId",
-                    "/courses/:layout/edit/:courseId/modules/:moduleId",
-                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId",
-                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId",
-                    "/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets/:widgetsId"
+                    '/courses/:layout/edit/:courseId',
+                    '/courses/:layout/edit/:courseId/modules/:moduleId',
+                    '/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId',
+                    '/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId',
+                    '/courses/:layout/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets/:widgetsId'
                 ]}
                        exact={true}
                        render={(props) =>
                            <CourseEditor {...props}/>}>
                 </Route>
                 <Route path={[
-                    "/courses/:courseId/quizzes",
-                    "/courses/:courseId/quizzes/:quizId"
+                    '/courses/:courseId/quizzes'
+                    // "/courses/:courseId/quizzes/:quizId"
                 ]}
                        exact={true}>
-                    <QuizzesList setQuizTitle={this.setQuizTitle}/>
+                    {/*<QuizzesList setQuizTitle={this.setQuizTitle}/>*/}
+                    <QuizzesList/>
                 </Route>
                 <Route
                     path={[
-                        "/courses/:courseId/quizzes/:quizId"
+                        '/courses/:courseId/quizzes/:quizId'
                     ]}
                     exact={true}>
-                    <Quiz quizTitle={this.state.quizTitle}/>
+                    {/*<Quiz quizTitle={this.state.quizTitle}/>*/}
+                    <Quiz/>
                 </Route>
             </div>
         );
     }
 }
 
-export default CourseManager
+export default CourseManager;
