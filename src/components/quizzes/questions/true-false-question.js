@@ -6,7 +6,7 @@ const TrueFalseQuestion = ({question}) => {
     const [isGraded, setIsGraded] = useState(false);
 
     const highlightTrue = () => {
-        if (!isGraded) {
+        if (!isGraded || userAnswer === '') {
             return '';
         } else if (userAnswerCorrect) {
             if (userAnswer === 'true') {
@@ -21,10 +21,10 @@ const TrueFalseQuestion = ({question}) => {
                 return 'list-group-item-success';
             }
         }
-    }
+    };
 
     const highlightFalse = () => {
-        if (!isGraded) {
+        if (!isGraded || userAnswer === '') {
             return '';
         } else if (userAnswerCorrect) {
             if (userAnswer === 'false') {
@@ -38,6 +38,50 @@ const TrueFalseQuestion = ({question}) => {
             } else {
                 return 'list-group-item-success';
             }
+        }
+    };
+
+    const showCheckInTrue = () => {
+        if (!isGraded || userAnswer === '') {
+            return false;
+        } else if (userAnswerCorrect && userAnswer === 'true') {
+            return true;
+        } else if (!userAnswerCorrect && userAnswer !== 'true') {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const showTimesInTrue = () => {
+        if (!isGraded || userAnswer === '') {
+            return false;
+        } else if (!userAnswerCorrect && userAnswer === 'true') {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const showCheckInFalse = () => {
+        if (!isGraded || userAnswer === '') {
+            return false;
+        } else if (userAnswerCorrect && userAnswer === 'false') {
+            return true;
+        } else if (!userAnswerCorrect && userAnswer !== 'false') {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const showTimesInFalse = () => {
+        if (!isGraded || userAnswer === '') {
+            return false;
+        } else if (!userAnswerCorrect && userAnswer === 'false') {
+            return true;
+        } else {
+            return false;
         }
     };
 
@@ -61,34 +105,52 @@ const TrueFalseQuestion = ({question}) => {
                     <label>
                         <input type='radio'
                                onClick={() => {
+                                   setIsGraded(false);
                                    setUserAnswer('true');
                                }}
                                name={question._id}
                                value={'true'}/>
                         TRUE
                     </label>
+                    {
+                        showCheckInTrue() &&
+                        <i className={'fas fa-check float-right'}></i>
+                    }
+                    {
+                        showTimesInTrue() &&
+                        <i className={'fas fa-times float-right'}></i>
+                    }
                 </li>
                 <li className={`list-group-item ${highlightFalse()}`}>
                     <label>
                         <input type='radio'
                                onClick={() => {
+                                   setIsGraded(false);
                                    setUserAnswer('false');
                                }}
                                name={question._id}
                                value={'false'}/>
                         FALSE
                     </label>
+                    {
+                        showCheckInFalse() &&
+                        <i className={'fas fa-check float-right'}></i>
+                    }
+                    {
+                        showTimesInFalse() &&
+                        <i className={'fas fa-times float-right'}></i>
+                    }
                 </li>
             </ul>
             <p>
                 Your answer: {userAnswer}
             </p>
-            <button type="button"
+            <button type='button'
                     onClick={() => {
                         setIsGraded(true);
                         userAnswer === question.correct ? setUserAnswerCorrect(true) : setUserAnswerCorrect(false);
                     }}
-                    class="btn btn-success">
+                    className='btn btn-success mb-2'>
                 Grade
             </button>
         </>
