@@ -1,6 +1,12 @@
 import React, {useState} from 'react';
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = (
+    {
+        question,
+        idx,
+        recordUserAnswer,
+        submitQuiz
+    }) => {
     const [userAnswer, setUserAnswer] = useState('');
     const [userAnswerCorrect, setUserAnswerCorrect] = useState(false);
     const [isGraded, setIsGraded] = useState(false);
@@ -75,6 +81,7 @@ const MultipleChoiceQuestion = ({question}) => {
                                            onClick={() => {
                                                setIsGraded(false);
                                                setUserAnswer(choice);
+                                               recordUserAnswer(idx, userAnswer);
                                            }}
                                            name={question._id}
                                            value={choice}/>
@@ -101,11 +108,13 @@ const MultipleChoiceQuestion = ({question}) => {
             </p>
             <button type={'button'}
                     onClick={() => {
-                        setIsGraded(true);
                         userAnswer === question.correct ? setUserAnswerCorrect(true) : setUserAnswerCorrect(false);
+                        setIsGraded(true);
+                        submitQuiz();
                     }}
                     className={'btn btn-success mb-2'}>
-                Grade
+                {/*Grade*/}
+                Submit
             </button>
         </>
     );

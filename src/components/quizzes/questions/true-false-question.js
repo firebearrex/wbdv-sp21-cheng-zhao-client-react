@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
+import quizService from '../../../services/quiz-service';
 
-const TrueFalseQuestion = ({question}) => {
+const TrueFalseQuestion = (
+    {
+        question,
+        idx,
+        recordUserAnswer,
+        submitQuiz
+    }) => {
     const [userAnswer, setUserAnswer] = useState('');
     const [userAnswerCorrect, setUserAnswerCorrect] = useState(false);
     const [isGraded, setIsGraded] = useState(false);
@@ -107,6 +114,7 @@ const TrueFalseQuestion = ({question}) => {
                                onClick={() => {
                                    setIsGraded(false);
                                    setUserAnswer('true');
+                                   recordUserAnswer(idx, userAnswer);
                                }}
                                name={question._id}
                                value={'true'}/>
@@ -127,6 +135,7 @@ const TrueFalseQuestion = ({question}) => {
                                onClick={() => {
                                    setIsGraded(false);
                                    setUserAnswer('false');
+                                   recordUserAnswer(idx, userAnswer);
                                }}
                                name={question._id}
                                value={'false'}/>
@@ -147,11 +156,13 @@ const TrueFalseQuestion = ({question}) => {
             </p>
             <button type='button'
                     onClick={() => {
-                        setIsGraded(true);
                         userAnswer === question.correct ? setUserAnswerCorrect(true) : setUserAnswerCorrect(false);
+                        setIsGraded(true);
+                        submitQuiz();
                     }}
                     className='btn btn-success mb-2'>
-                Grade
+                {/*Grade*/}
+                Submit
             </button>
         </>
     );

@@ -8,6 +8,23 @@ const Quiz = () => {
     const {courseId, quizId} = useParams();
     const [quizTitle, setQuizTitle] = useState();
     const [questions, setQuestions] = useState([]);
+    const [attemptedQuestions, setAttemptedQuestions] = useState([]);
+
+    const recordUserAnswer = (questionIdx, userAnswer) => {
+        setAttemptedQuestions(prevState => {
+            let newState = [...prevState];
+            let attemptedQuestion = {
+                ...prevState[questionIdx],
+                answer: userAnswer
+            };
+            newState[questionIdx] = attemptedQuestion;
+            return newState;
+        });
+    };
+
+    const submitQuiz = () => {
+        quizService.submitQuiz(quizId, attemptedQuestions);
+    }
 
     useEffect(() => {
         if (typeof quizId !== 'undefined' && quizId !== 'undefined') {
@@ -15,7 +32,10 @@ const Quiz = () => {
                 .then(quiz => setQuizTitle(quiz.title));
             console.log(`Loading questions for quizId: ${quizId}`);
             questionService.findQuestionsForQuiz(quizId)
-                .then((questions) => setQuestions(questions));
+                .then((questions) => {
+                    setQuestions(questions);
+                    setAttemptedQuestions(questions);
+                });
         }
     }, [courseId, quizId]);
 
@@ -24,12 +44,15 @@ const Quiz = () => {
             <h3>{quizTitle} (number of questions: {questions.length})</h3>
             <ul>
                 {
-                    questions.map(question => {
+                    questions.map((question, idx) => {
                         return (
                             <li key={question._id}>
-                                <Question question={question}/>
+                                <Question question={question}
+                                          idx={idx}
+                                          recordUserAnswer={recordUserAnswer}
+                                          submitQuiz={submitQuiz}/>
                             </li>
-                        )
+                        );
                     })
                 }
             </ul>
