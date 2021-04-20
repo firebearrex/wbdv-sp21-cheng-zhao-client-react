@@ -10,7 +10,8 @@ const findQuizById = (qid) =>
         .then(response => response.json());
 
 const submitQuiz = (quizId, questions) =>
-    fetch(`${LOCAL_QUIZZES_URL}/${quizId}/attempts`, {
+    // fetch(`${LOCAL_QUIZZES_URL}/${quizId}/attempts`, {
+    fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
         method: 'POST',
         body: JSON.stringify(questions),
         headers: {
