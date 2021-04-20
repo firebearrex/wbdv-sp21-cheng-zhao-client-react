@@ -1,5 +1,5 @@
 const QUIZZES_URL = 'https://wbdv-cheng-zhao-server-node.herokuapp.com/api/quizzes';
-const LOCAL_QUIZZES_URL = 'http://localhost:4000/api/quizzes';
+const LOCAL_QUIZZES_URL = 'http://localhost:3001/api/quizzes';
 
 const findAllQuizzes = () =>
     fetch(QUIZZES_URL)
