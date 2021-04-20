@@ -5,7 +5,8 @@ const MultipleChoiceQuestion = (
         question,
         idx,
         recordUserAnswer,
-        submitQuiz
+        submitQuiz,
+        score,
     }) => {
     const [userAnswer, setUserAnswer] = useState('');
     const [userAnswerCorrect, setUserAnswerCorrect] = useState(false);
@@ -72,16 +73,16 @@ const MultipleChoiceQuestion = (
             </h5>
             <ul className={'list-group'}>
                 {
-                    question.choices.map((choice, idx) => {
+                    question.choices.map((choice, choiceIdx) => {
                         return (
                             <li className={`list-group-item ${highlightChoice(choice)}`}
-                                key={idx}>
+                                key={choiceIdx}>
                                 <label>
                                     <input type='radio'
                                            onClick={() => {
                                                setIsGraded(false);
                                                setUserAnswer(choice);
-                                               recordUserAnswer(idx, userAnswer);
+                                               recordUserAnswer(idx, choice);
                                            }}
                                            name={question._id}
                                            value={choice}/>
@@ -103,8 +104,13 @@ const MultipleChoiceQuestion = (
                     })
                 }
             </ul>
-            <p>
+            <p className={'my-2'}>
                 Your answer: {userAnswer}
+                <br/>
+                {
+                    isGraded &&
+                        `Your score: ${score}`
+                }
             </p>
             <button type={'button'}
                     onClick={() => {
@@ -112,7 +118,7 @@ const MultipleChoiceQuestion = (
                         setIsGraded(true);
                         submitQuiz();
                     }}
-                    className={'btn btn-success mb-2'}>
+                    className={'btn btn-success my-2'}>
                 {/*Grade*/}
                 Submit
             </button>

@@ -9,22 +9,32 @@ const Quiz = () => {
     const [quizTitle, setQuizTitle] = useState();
     const [questions, setQuestions] = useState([]);
     const [attemptedQuestions, setAttemptedQuestions] = useState([]);
+    const [score, setScore] = useState(-1);
 
     const recordUserAnswer = (questionIdx, userAnswer) => {
         setAttemptedQuestions(prevState => {
             let newState = [...prevState];
-            let attemptedQuestion = {
-                ...prevState[questionIdx],
-                answer: userAnswer
-            };
-            newState[questionIdx] = attemptedQuestion;
+            console.log(newState);
+            // let attemptedQuestion = {
+            //     ...prevState[questionIdx],
+            //     answer: userAnswer
+            // };
+            // newState[questionIdx] = attemptedQuestion;
+            console.log(newState[questionIdx]);
+            newState[questionIdx].answer = userAnswer;
+            console.log(newState[questionIdx]);
             return newState;
         });
     };
 
     const submitQuiz = () => {
-        quizService.submitQuiz(quizId, attemptedQuestions);
-    }
+        console.log(attemptedQuestions);
+        quizService.submitQuiz(quizId, attemptedQuestions)
+            .then(result => {
+                console.log(result);
+                setScore(result.score);
+            });
+    };
 
     useEffect(() => {
         if (typeof quizId !== 'undefined' && quizId !== 'undefined') {
@@ -34,6 +44,7 @@ const Quiz = () => {
             questionService.findQuestionsForQuiz(quizId)
                 .then((questions) => {
                     setQuestions(questions);
+                    console.log(questions);
                     setAttemptedQuestions(questions);
                 });
         }
@@ -50,7 +61,8 @@ const Quiz = () => {
                                 <Question question={question}
                                           idx={idx}
                                           recordUserAnswer={recordUserAnswer}
-                                          submitQuiz={submitQuiz}/>
+                                          submitQuiz={submitQuiz}
+                                          score={score}/>
                             </li>
                         );
                     })

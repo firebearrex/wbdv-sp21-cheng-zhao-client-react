@@ -6,7 +6,8 @@ const TrueFalseQuestion = (
         question,
         idx,
         recordUserAnswer,
-        submitQuiz
+        submitQuiz,
+        score,
     }) => {
     const [userAnswer, setUserAnswer] = useState('');
     const [userAnswerCorrect, setUserAnswerCorrect] = useState(false);
@@ -114,7 +115,7 @@ const TrueFalseQuestion = (
                                onClick={() => {
                                    setIsGraded(false);
                                    setUserAnswer('true');
-                                   recordUserAnswer(idx, userAnswer);
+                                   recordUserAnswer(idx, 'true');
                                }}
                                name={question._id}
                                value={'true'}/>
@@ -135,7 +136,7 @@ const TrueFalseQuestion = (
                                onClick={() => {
                                    setIsGraded(false);
                                    setUserAnswer('false');
-                                   recordUserAnswer(idx, userAnswer);
+                                   recordUserAnswer(idx, 'false');
                                }}
                                name={question._id}
                                value={'false'}/>
@@ -151,8 +152,13 @@ const TrueFalseQuestion = (
                     }
                 </li>
             </ul>
-            <p>
+            <p className={'my-2'}>
                 Your answer: {userAnswer}
+                <br/>
+                {
+                    isGraded &&
+                    `Your score: ${score}`
+                }
             </p>
             <button type='button'
                     onClick={() => {
@@ -160,7 +166,7 @@ const TrueFalseQuestion = (
                         setIsGraded(true);
                         submitQuiz();
                     }}
-                    className='btn btn-success mb-2'>
+                    className='btn btn-success my-2'>
                 {/*Grade*/}
                 Submit
             </button>

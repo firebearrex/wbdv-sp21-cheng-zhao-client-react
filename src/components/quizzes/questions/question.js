@@ -7,7 +7,8 @@ const Question = (
         question,
         idx,
         recordUserAnswer,
-        submitQuiz
+        submitQuiz,
+        score
     }) => {
     return (
         <>
@@ -15,15 +16,17 @@ const Question = (
                 question.type === 'TRUE_FALSE' &&
                 <TrueFalseQuestion question={question}
                                    idx={idx}
-                                   recorUserAnswer={recordUserAnswer}
-                                   submitQuiz={submitQuiz}/>
+                                   recordUserAnswer={recordUserAnswer}
+                                   submitQuiz={submitQuiz}
+                                   score={score}/>
             }
             {
                 question.type === 'MULTIPLE_CHOICE' &&
                 <MultipleChoiceQuestion question={question}
                                         idx={idx}
-                                        recorUserAnswer={recordUserAnswer}
-                                        submitQuiz={submitQuiz}/>
+                                        recordUserAnswer={recordUserAnswer}
+                                        submitQuiz={submitQuiz}
+                                        score={score}/>
             }
         </>
     );
